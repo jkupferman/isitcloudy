@@ -9,7 +9,7 @@ class IpAddress
   def in? ip_range
     raise ArgumentError unless ip_range.kind_of?(IpRange)
 
-    ip_range.include?(self)
+    ip_range.include?(@ip_address)
   end
 
   private

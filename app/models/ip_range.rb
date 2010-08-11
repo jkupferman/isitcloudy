@@ -11,9 +11,9 @@ class IpRange
   end
 
   def include? ip_address
-    raise ArgumentError unless ip_address.kind_of?(IpAddress)
+    raise ArgumentError unless [IpAddress, IPAddr].include?(ip_address.class)
 
-    ip_address.mask(@mask_length) == @ip_range
+    @ip_range.include?(ip_address)
   end
 
   private
