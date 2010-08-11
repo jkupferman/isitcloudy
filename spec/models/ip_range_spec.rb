@@ -38,11 +38,26 @@ describe IpRange do
   end
 
   context "include?" do
-    it "should return true for any ip range when the mask is 32" do
-      @range = IpRange.new("192.168.1.1", 32)
-      @range.include?(IPAddr.new("192.168.1.1")).should be_true
-      @range.include?(IPAddr.new("0.0.0.0")).should be_true
-      @range.include?(IPAddr.new("255.255.255.255")).should be_true
+    it "should include any ip when the mask is 0" do
+      @range = IpRange.new("192.168.1.1", 0)
+      @range.should include(IpAddress.new("192.168.1.1"))
+      @range.should include(IpAddress.new("0.0.0.0"))
+      @range.should include(IpAddress.new("255.255.255.255"))
+    end
+
+    it "should only include the exact ip when the mask is 32" do
+      @range = IpRange.new("220.2.2.2", 32)
+      @range.should include(IpAddress.new("220.2.2.2"))
+      
+      @range.should_not include(IpAddress.new("220.2.2.3"))
+      @range.should_not include(IpAddress.new("220.255.255.1"))
+    end
+
+    it "should include both the smallest and largest possible ip in a range" do
+      @range = IpRange.new("120.50.0.0", 16)
+
+      @range.should include(IpAddress.new("120.50.0.0")), "the smallest IP in the range"
+      @range.should include(IpAddress.new("120.50.255.255")), "the largest IP in the range"
     end
   end
 end

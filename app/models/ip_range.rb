@@ -2,7 +2,7 @@ require 'ipaddr'
 
 class IpRange
   def initialize(ip, mask_length)
-    @ip = IPAddr.new(ip)
+    @ip = IpAddress.new(ip)
     @mask_length = mask_length
 
     validate_mask_length
@@ -11,9 +11,9 @@ class IpRange
   end
 
   def include? ip_address
-    raise ArgumentError unless ip_address.kind_of?(IPAddr)
+    raise ArgumentError unless ip_address.kind_of?(IpAddress)
 
-    true
+    ip_address.mask(@mask_length) == @ip_range
   end
 
   private
