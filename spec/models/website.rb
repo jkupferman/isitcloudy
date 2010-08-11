@@ -53,10 +53,27 @@ describe Website do
         end
       end
 
-      context "with .com suffixes" do
-        it "should work with urls that have .edu suffixes"
-        it "should work with urls that have .co.uk suffixes"
-        it "should work with urls that have .co.jp suffixes"
+      it "should get ips when a trailing / is added to the url"
+      it "should get ips when a trailing params are added to the url"
+      
+      context "with non-.com suffixes" do
+        it "should get ips with urls that have .edu suffixes" do
+          @actual_ips = ["128.111.24.40"]
+          @ucsb = Website.new("ucsb.edu")
+          @ucsb.ip_addresses.should =~ @actual_ips
+        end
+
+        it "should get ips with urls that have .co.uk suffixes" do
+          @actual_ips = ["208.46.17.17","208.46.17.10"]
+          @bbc = Website.new("telegraph.co.uk")
+          @bbc.ip_addresses.should =~ @actual_ips
+        end
+
+        it "should get ips with urls that have .co.il suffixes" do
+          @actual_ips = ["80.179.238.226"]
+          @asat = Website.new("asat.co.il")
+          @asat.ip_addresses.should =~ @actual_ips
+        end
       end
     end
   end
