@@ -10,4 +10,8 @@ class WebsitesController < ApplicationController
 
     redirect_to websites_url(@website)
   end
+
+  def show
+    @website = Website.find_by_id(params[:id])
+  end
 end

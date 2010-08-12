@@ -12,10 +12,19 @@ describe WebsitesController, " NEW action" do
   end
 
   context "on a GET" do
-    it "should assign a website object" do
+    before do
       get :new
-
+    end
+    it "should assign a website object" do
       assigns(:website).should_not be_nil
+    end
+
+    it "should be a success" do
+      response.should be_success
+    end
+
+    it "should render the new template" do
+      response.should render_template("new")
     end
   end
 end
@@ -52,4 +61,33 @@ describe WebsitesController, " CREATE action" do
 end
 
 describe WebsitesController, " SHOW action" do
+  it "should route to the show method" do
+    @id = 15
+    assert_recognizes({ :controller => "websites", :action => "show", :id => @id.to_s },
+                      { :path => "/websites/#{@id}", :method => :get })
+  end
+
+  context "on a GET" do
+    before do
+      @id = 131
+      @website = flexmock("website")
+
+      flexmock(Website).should_receive(:find_by_id).with(@id.to_s).and_return(@website)
+
+      get :show, :id => @id
+    end
+
+    it "should be a success" do
+      response.should be_success
+    end
+
+    it "should assign a website object" do
+      assigns(:website).should_not be_nil
+      assigns(:website).should eql(@website)
+    end
+
+    it "should render the show template" do
+      response.should render_template("show")
+    end
+  end
 end
