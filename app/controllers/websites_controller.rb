@@ -13,5 +13,10 @@ class WebsitesController < ApplicationController
 
   def show
     @website = Website.find_by_id(params[:id])
+
+    if @website.nil?
+      flash[:error] = "Totally not cool. Try a real one next time."
+      render :new
+    end
   end
 end

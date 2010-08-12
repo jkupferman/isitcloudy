@@ -68,26 +68,51 @@ describe WebsitesController, " SHOW action" do
   end
 
   context "on a GET" do
-    before do
-      @id = 131
-      @website = flexmock("website")
 
-      flexmock(Website).should_receive(:find_by_id).with(@id.to_s).and_return(@website)
+    context "with a valid id" do
+      before do
+        @id = 131
+        @website = flexmock("website")
 
-      get :show, :id => @id
+        flexmock(Website).should_receive(:find_by_id).with(@id.to_s).and_return(@website)
+
+        get :show, :id => @id
+      end
+
+      it "should be a success" do
+        response.should be_success
+      end
+
+      it "should assign a website object" do
+        assigns(:website).should_not be_nil
+        assigns(:website).should eql(@website)
+      end
+
+      it "should render the show template" do
+        response.should render_template("show")
+      end
     end
 
-    it "should be a success" do
-      response.should be_success
-    end
+    context "with an invalid id" do
+      before do
+        @id = 131
 
-    it "should assign a website object" do
-      assigns(:website).should_not be_nil
-      assigns(:website).should eql(@website)
-    end
+        flexmock(Website).should_receive(:find_by_id).with(@id.to_s).and_return(nil)
 
-    it "should render the show template" do
-      response.should render_template("show")
+        get :show, :id => @id
+      end
+
+      it "should be a success" do
+        response.should be_success
+      end
+
+      it "should display a flash message" do
+        flash[:error].should_not be_nil
+      end
+
+      it "should render the new template" do
+        response.should render_template("new")
+      end
     end
   end
 end
