@@ -5,7 +5,28 @@ describe Website do
     @website = Website.new("google.com")
   end
 
+  it "should have a new method which takes no arguments" do
+    @website = Website.new
+  end
+
+
+  context "url=" do
+    it "should generate the same object when using the constructor or assignment" do
+      @url = "http://www.google.com"
+      @first = Website.new(@url)
+
+      @second = Website.new
+      @second.url = @url
+
+      @first.should == @second
+    end
+  end
+
   context "ip_addresses" do
+    it "should return an empty array when no url has been provided" do
+      Website.new.ip_addresses.should =~ []
+    end
+
     it "should fetch the ips of rightscale" do
       @actual_ips = ["174.129.230.90", "174.129.238.229"]
       @rightscale = Website.new("rightscale.com")
