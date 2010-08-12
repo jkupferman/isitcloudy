@@ -1,8 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
-  map.connect 'websites/', :controller => 'websites', :action => 'new'
-  map.connect 'websites/:id/report', :controller => 'websites', :action => 'show'
+  map.resources :websites, :only => [:new, :create, :show]
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
