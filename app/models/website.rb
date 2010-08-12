@@ -1,32 +1,21 @@
 require 'dnsruby'
 
-class Website
+class Website < ActiveRecord::Base
   HTTP_PREFIX_REGEX = /https?:\/\//
   WWW_PREFIX_REGEX = /^www\./
   URL_EXTRACT_REGEX = /([\w.]+)/ #/((\w+)([.]\w{3}|[.]\w{2}[.]\w{2}))/
-
-  attr_accessor :url
-
-  def initialize url=nil
-    @url = url
-    @clean_url = parse(url)
-  end
-
-  def url= url
-    @url = url
-    @clean_url = parse(url)
-  end
 
   def ip_addresses
     @ip_addresses ||= fetch_ip_addresses
   end
 
-  def ==(other)
-    self.url == other.url
+  def clean_url
+    # return the url if its already been set, otherwise parse and assign it
+    super || self.clean_url = parse_url(self.url)
   end
 
   private
-  def parse input_url
+  def parse_url input_url
     return nil if input_url.nil?
 
     url = input_url.to_s.downcase
@@ -42,10 +31,10 @@ class Website
   end
 
   def fetch_ip_addresses
-    return [] if @clean_url.nil?
+    return [] if self.clean_url.nil?
 
     resolver = Dnsruby::Resolver.new
-    result = resolver.query(@clean_url, Dnsruby::Types.A)
+    result = resolver.query(self.clean_url, Dnsruby::Types.A)
 
     answer = result.answer
     if answer.kind_of?(Dnsruby::Message::Section)
