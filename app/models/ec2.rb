@@ -1,12 +1,17 @@
 class Ec2
   def self.include? ip_address
-    @@ip_ranges.each do |zone, ip_ranges|
+    self.ip_ranges.each do |zone, ip_ranges|
       ip_ranges.each do |ip_range|
         return true if ip_range.include?(ip_address)
       end
     end
 
     false
+  end
+
+  private
+  def self.ip_ranges
+    @@ip_ranges
   end
 
   @@us_east = [
