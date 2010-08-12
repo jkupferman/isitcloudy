@@ -10,6 +10,15 @@ describe WebsitesController, " NEW action" do
     assert_recognizes({ :controller => "websites", :action => "new"}, 
                       { :path => "/websites/", :method => :get})
   end
+
+  context "on a GET" do
+    it "should assign a website object" do
+      get :new
+
+      assigns(:website).should_not be_nil
+    end
+  end
+
 end
 
 describe WebsitesController, " SHOW action" do
