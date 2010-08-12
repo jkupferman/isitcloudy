@@ -6,9 +6,12 @@ class WebsitesController < ApplicationController
   def create
     @website = Website.new(params[:website])
 
-    @website.save!
-
-    redirect_to websites_url(@website)
+    if @website.save
+      redirect_to websites_url(@website)
+    else
+      flash[:notice] = "Hey, how about giving me an actual website."
+      render :new
+    end
   end
 
   def show
