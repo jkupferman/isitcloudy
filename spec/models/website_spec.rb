@@ -114,12 +114,32 @@ describe Website do
 
   context "is website on cloud" do
 
+    CLOUDS = [:ec2, :rackspace, :gogrid, :joyent, :linode]
+
     context "on_cloud?" do
-      it "should return true when it is on any of the specified clouds"
+      before do
+        @website = Website.new(:url => "cookie.com")
+      end
+
+      CLOUDS.each do |cloud|
+        it "should return true when it is only on #{cloud.to_s.capitalize}" do
+          # This ensures the rest of the on_? methods will always return false
+          flexmock(@website).should_receive("pretty_whois").and_return("")
+          
+          flexmock(@website).should_receive("on_#{cloud}?").and_return(true)
+          @website.on_cloud?.should be_true
+        end
+      end
+      
+      it "should be false when it is not on any of the clouds" do
+        CLOUDS.each do |cloud|
+          flexmock(@website).should_receive("on_#{cloud}?").and_return(false)
+        end
+
+        @website.should_not be_on_cloud 
+      end
     end
 
-
-    CLOUDS = [:ec2, :rackspace, :gogrid, :joyent]
 
     CLOUDS.each do |cloud|
       context "on_#{cloud.to_s}?" do
@@ -180,6 +200,10 @@ describe Website do
 
     def joyent_whois
       """NetRange:       72.2.112.0 - 72.2.127.255 CIDR:           72.2.112.0/20 OriginAS:        NetName:        NETWO1924-ARIN NetHandle:      NET-72-2-112-0-1 Parent:         NET-72-0-0-0-0 NetType:        Direct Allocation NameServer:     DNS1.JOYENT.COM NameServer:     DNS2.JOYENT.COM RegDate:        2008-05-14 Updated:        2008-05-14"""
+    end
+    
+    def linode_whois
+      """NetRange:       97.107.128.0 - 97.107.143.255 CIDR:           97.107.128.0/20 OriginAS:        NetName:        LINODE-US NetHandle:      NET-97-107-128-0-1 Parent:         NET-97-0-0-0-0 NetType:        Direct Allocation NameServer:     NS4.LINODE.COM NameServer:     NS1.LINODE.COM NameServer:     NS2.LINODE.COM NameServer:     NS5.LINODE.COM NameServer:     NS3.LINODE.COM Comment:        This block is used for static customer allocations. RegDate:        2008-12-12 Updated:        2010-07-27"""
     end
 
     def not_cloud_whois
