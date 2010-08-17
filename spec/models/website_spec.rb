@@ -119,7 +119,7 @@ describe Website do
     end
 
 
-    CLOUDS = [:ec2, :rackspace, :gogrid]
+    CLOUDS = [:ec2, :rackspace, :gogrid, :joyent]
 
     CLOUDS.each do |cloud|
       context "on_#{cloud.to_s}?" do
@@ -176,6 +176,10 @@ describe Website do
 
     def gogrid_whois
       """NetRange:       74.3.192.0 - 74.3.255.255 CIDR:           74.3.192.0/18 OriginAS:       AS36430, AS26228 NetName:        GOGRID-BLK1 NetHandle:      NET-74-3-192-0-1 Parent:         NET-74-0-0-0-0 NetType:        Direct Allocation NameServer:     NS1.GOGRID.COM NameServer:     NS.GOGRID.COM Comment:        http://www.gogrid.com/ RegDate:        2009-05-18 Updated:        2009-07-15"""
+    end
+
+    def joyent_whois
+      """NetRange:       72.2.112.0 - 72.2.127.255 CIDR:           72.2.112.0/20 OriginAS:        NetName:        NETWO1924-ARIN NetHandle:      NET-72-2-112-0-1 Parent:         NET-72-0-0-0-0 NetType:        Direct Allocation NameServer:     DNS1.JOYENT.COM NameServer:     DNS2.JOYENT.COM RegDate:        2008-05-14 Updated:        2008-05-14"""
     end
 
     def not_cloud_whois
