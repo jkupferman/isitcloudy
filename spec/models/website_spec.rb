@@ -98,6 +98,20 @@ describe Website do
 
       @website.whois.should eql("")
     end
+
+    it "should return a whois when called with an IP" do
+      @website = Website.new(:url => "foo.com")
+
+      @whois_result = "A WHOIS RESULT"
+      @ip = "AN IP"
+      flexmock(@website).should_receive(:ip_addresses).and_return([@ip])
+
+      @client_mock = flexmock("Whois::Client")
+      flexmock(Whois::Client).should_receive(:new).once.and_return(@client_mock)
+      flexmock(@client_mock).should_receive(:query).once.with(@ip).and_return(@whois_result)
+
+      @website.whois.should eql(@whois_result)
+    end
   end
 
 end

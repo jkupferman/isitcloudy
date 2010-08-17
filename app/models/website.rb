@@ -1,4 +1,5 @@
 require 'dnsruby'
+require 'whois'
 
 class Website < ActiveRecord::Base
   HTTP_PREFIX_REGEX = /https?:\/\//
@@ -53,5 +54,7 @@ class Website < ActiveRecord::Base
   def fetch_whois
     return "" if self.ip_addresses.empty?
 
+    client = Whois::Client.new
+    client.query(self.ip_addresses.first)
   end
 end
