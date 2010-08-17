@@ -7,6 +7,7 @@ class Website < ActiveRecord::Base
   URL_EXTRACT_REGEX = /([\w.]+)/ #/((\w+)([.]\w{3}|[.]\w{2}[.]\w{2}))/
 
   EC2_REGEX = /AMAZON-EC2-[\d]+/
+  RACKSPACE_REGEX = /RSCP-NET-[\d]+/
 
   validates_presence_of :url
 
@@ -32,6 +33,10 @@ class Website < ActiveRecord::Base
 
   def on_ec2?
     EC2_REGEX.match(self.pretty_whois)
+  end
+
+  def on_rackspace?
+    RACKSPACE_REGEX.match(self.pretty_whois)
   end
 
   private
