@@ -118,21 +118,37 @@ describe Website do
       it "should return true when it is on any of the specified clouds"
     end
 
+
     context "on_ec2?" do
       before do
         @website = Website.new(:url => "testing.com")
       end
 
-      it "should return true when the whois says it is on Amazon EC2" do
+      it "should return true when the whois says it is on EC2" do
         flexmock(@website).should_receive(:pretty_whois).and_return(ec2_whois)
 
         @website.on_ec2?.should be_true
       end
 
+      it "should not return true when whois is empty" do
+        flexmock(@website).should_receive(:pretty_whois).and_return("")
+
+        @website.on_ec2?.should be_false
+      end
+
+      it "should not return true when it is a non-cloud whois" do
+        flexmock(@website).should_receive(:pretty_whois).and_return(not_cloud_whois)
+
+        @website.on_ec2?.should be_false
+      end
     end
 
     def ec2_whois
         """NetRange:       184.72.0.0 - 184.73.255.255 CIDR:           184.72.0.0/15 OriginAS:        NetName:        AMAZON-EC2-7 NetHandle:      NET-184-72-0-0-1 Parent:         NET-184-0-0-0-0 NetType:        Direct Assignment NameServer:     PDNS3.ULTRADNS.ORG NameServer:     PDNS2.ULTRADNS.NET NameServer:     PDNS1.ULTRADNS.NET Comment:"""
+    end
+
+    def not_cloud_whois
+      """NetRange:       64.40.96.0 - 64.40.127.255 CIDR:           64.40.96.0/19 OriginAS:        NetName:        NETNATION NetHandle:      NET-64-40-96-0-1 Parent:         NET-64-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.NETNATION.COM NameServer:     NS1.NETNATION.COM RegDate:        2000-02-25 Updated:        2005-06-13"""
     end
 
   end

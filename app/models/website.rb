@@ -6,6 +6,8 @@ class Website < ActiveRecord::Base
   WWW_PREFIX_REGEX = /^www\./
   URL_EXTRACT_REGEX = /([\w.]+)/ #/((\w+)([.]\w{3}|[.]\w{2}[.]\w{2}))/
 
+  EC2_REGEX = /AMAZON-EC2-[\d]+/
+
   validates_presence_of :url
 
   def ip_addresses
@@ -17,7 +19,7 @@ class Website < ActiveRecord::Base
   end
 
   def pretty_whois
-    self.whois.split("\n").delete_if {|l| l.empty? || l.start_with?("#") }.join(" ")
+    @pretty_whois ||= self.whois.split("\n").delete_if {|l| l.empty? || l.start_with?("#") }.join(" ")
   end
 
   def clean_url
@@ -29,7 +31,7 @@ class Website < ActiveRecord::Base
   end
 
   def on_ec2?
-    true
+    EC2_REGEX.match(self.pretty_whois)
   end
 
   private
