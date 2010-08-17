@@ -8,6 +8,7 @@ class Website < ActiveRecord::Base
 
   EC2_REGEX = /AMAZON-EC2-[\d]+/
   RACKSPACE_REGEX = /RSCP-NET-[\d]+/
+  GOGRID_REGEX = /GOGRID-BLK[\d]+/
 
   validates_presence_of :url
 
@@ -37,6 +38,10 @@ class Website < ActiveRecord::Base
 
   def on_rackspace?
     RACKSPACE_REGEX.match(self.pretty_whois)
+  end
+
+  def on_gogrid?
+    GOGRID_REGEX.match(self.pretty_whois)
   end
 
   private

@@ -119,10 +119,9 @@ describe Website do
     end
 
 
-    CLOUDS = [:ec2, :rackspace]
+    CLOUDS = [:ec2, :rackspace, :gogrid]
 
     CLOUDS.each do |cloud|
-
       context "on_#{cloud.to_s}?" do
         before do
           @method_name = "on_#{cloud.to_s}?"
@@ -152,6 +151,17 @@ describe Website do
 
           @website.send(@method_name).should be_false
         end
+
+        CLOUDS.each do |other_cloud|
+          next if other_cloud == cloud
+
+          it "should not return true when the whois says it on #{other_cloud.to_s.capitalize}" do
+            cloud_whois_result = self.send("#{cloud.to_s}_whois")
+            flexmock(@website).should_receive(:pretty_whois).and_return(cloud_whois_result)
+
+            @website.send("on_#{other_cloud}?").should be_false
+          end
+        end
       end
     end
 
@@ -162,6 +172,10 @@ describe Website do
 
     def rackspace_whois
       """NetRange:       74.205.0.0 - 74.205.127.255 CIDR:           74.205.0.0/17 OriginAS:       AS33070, AS10532, AS19994, AS27357 NetName:        RSCP-NET-4 NetHandle:      NET-74-205-0-0-1 Parent:         NET-74-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.RACKSPACE.COM NameServer:     NS.RACKSPACE.COM RegDate:        2006-11-20 Updated:        2010-05-14 """
+    end
+
+    def gogrid_whois
+      """NetRange:       74.3.192.0 - 74.3.255.255 CIDR:           74.3.192.0/18 OriginAS:       AS36430, AS26228 NetName:        GOGRID-BLK1 NetHandle:      NET-74-3-192-0-1 Parent:         NET-74-0-0-0-0 NetType:        Direct Allocation NameServer:     NS1.GOGRID.COM NameServer:     NS.GOGRID.COM Comment:        http://www.gogrid.com/ RegDate:        2009-05-18 Updated:        2009-07-15"""
     end
 
     def not_cloud_whois
