@@ -24,6 +24,14 @@ class Website < ActiveRecord::Base
     @cleaned_url ||= Website.parse_url(self.url)
   end
 
+  def on_cloud?
+    true
+  end
+
+  def on_ec2?
+    true
+  end
+
   private
   def self.parse_url input_url
     return nil if input_url.nil?

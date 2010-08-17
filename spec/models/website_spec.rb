@@ -112,5 +112,30 @@ describe Website do
     end
   end
 
+  context "is website on cloud" do
+
+    context "on_cloud?" do
+      it "should return true when it is on any of the specified clouds"
+    end
+
+    context "on_ec2?" do
+      before do
+        @website = Website.new(:url => "testing.com")
+      end
+
+      it "should return true when the whois says it is on Amazon EC2" do
+        flexmock(@website).should_receive(:pretty_whois).and_return(ec2_whois)
+
+        @website.on_ec2?.should be_true
+      end
+
+    end
+
+    def ec2_whois
+        """NetRange:       184.72.0.0 - 184.73.255.255 CIDR:           184.72.0.0/15 OriginAS:        NetName:        AMAZON-EC2-7 NetHandle:      NET-184-72-0-0-1 Parent:         NET-184-0-0-0-0 NetType:        Direct Assignment NameServer:     PDNS3.ULTRADNS.ORG NameServer:     PDNS2.ULTRADNS.NET NameServer:     PDNS1.ULTRADNS.NET Comment:"""
+    end
+
+  end
+
 end
 
