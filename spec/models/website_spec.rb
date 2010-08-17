@@ -114,7 +114,7 @@ describe Website do
 
   context "is website on cloud" do
 
-    CLOUDS = [:ec2, :rackspace, :gogrid, :joyent, :linode]
+    CLOUDS = Website::SUPPORTED_CLOUDS
 
     context "on_cloud?" do
       before do

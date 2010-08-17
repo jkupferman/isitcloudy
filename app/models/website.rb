@@ -6,6 +6,8 @@ class Website < ActiveRecord::Base
   WWW_PREFIX_REGEX = /^www\./
   URL_EXTRACT_REGEX = /([\w.]+)/ #/((\w+)([.]\w{3}|[.]\w{2}[.]\w{2}))/
 
+  SUPPORTED_CLOUDS = [:ec2, :rackspace, :gogrid, :joyent, :linode]
+
   EC2_REGEX = /AMAZON-EC2-[\d]+/
   RACKSPACE_REGEX = /RSCP-NET-[\d]+/
   GOGRID_REGEX = /GOGRID-BLK[\d]+/
