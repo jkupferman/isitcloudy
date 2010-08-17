@@ -16,13 +16,16 @@ class Website < ActiveRecord::Base
     @whois ||= fetch_whois
   end
 
+  def pretty_whois
+    self.whois.split("\n").delete_if {|l| l.empty? || l.start_with?("#") }.join(" ")
+  end
+
   def clean_url
-    # return the url if its already been set, otherwise parse and assign it
-    super || self.clean_url = parse_url(self.url)
+    @cleaned_url ||= Website.parse_url(self.url)
   end
 
   private
-  def parse_url input_url
+  def self.parse_url input_url
     return nil if input_url.nil?
 
     url = input_url.to_s.downcase
@@ -40,12 +43,17 @@ class Website < ActiveRecord::Base
   def fetch_ip_addresses
     return [] if self.clean_url.nil?
 
-    resolver = Dnsruby::Resolver.new
-    result = resolver.query(self.clean_url, Dnsruby::Types.A)
+    resolver = Dnsruby::Resolver.new(:packet_timeout => 1, :query_timeout => 1, :retry_times => 2)
+    begin
+      result = resolver.query(self.clean_url, Dnsruby::Types.A)
+    rescue Dnsruby::ServFail, Dnsruby::NXDomain, Dnsruby::ResolvTimeout => e
+      Rails.logger.info("IP Address lookup failed for URL: #{self.url.to_s} \n#{e.pretty_printer}")
+      return []
+    end
 
     answer = result.answer
     if answer.kind_of?(Dnsruby::Message::Section)
-      answer.map { |i| i.address.to_s }.sort.uniq
+      answer.map { |i| i.address.to_s if i.respond_to?(:address) }.compact.sort.uniq
     else
       [answer.address.to_s]
     end
@@ -55,6 +63,11 @@ class Website < ActiveRecord::Base
     return "" if self.ip_addresses.empty?
 
     client = Whois::Client.new
-    client.query(self.ip_addresses.first)
+    begin
+      client.query(self.ip_addresses.first).to_s
+    rescue SocketError, Timeout::Error => e
+      Rails.logger.info("Whois lookup failed for URL: #{self.url.to_s} \n#{e.pretty_printer}")
+      ""
+    end
   end
 end

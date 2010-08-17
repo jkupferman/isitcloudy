@@ -9,7 +9,6 @@ describe Website do
     @website = Website.new
   end
 
-
   context "ip_addresses" do
     it "should return an empty array when no url has been provided" do
       Website.new.ip_addresses.should =~ []
@@ -29,7 +28,6 @@ describe Website do
     end
 
     context "with different url variations" do
-      context ""
       before do
         @actual_ips = ["174.129.230.90", "174.129.238.229"]
         @actual_url = "rightscale.com"
