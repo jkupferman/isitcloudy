@@ -86,5 +86,19 @@ describe Website do
       end
     end
   end
+
+  context "whois" do
+    it "should return a bank string when no website is provided" do
+      Website.new.whois.should eql("")
+    end
+
+    it "should return a blank string when no ip addresses are available" do
+      @website = Website.new(:url => "foo.com")
+      flexmock(@website).should_receive(:ip_addresses).and_return([])
+
+      @website.whois.should eql("")
+    end
+  end
+
 end
 

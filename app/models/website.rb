@@ -11,6 +11,10 @@ class Website < ActiveRecord::Base
     @ip_addresses ||= fetch_ip_addresses
   end
 
+  def whois
+    @whois ||= fetch_whois
+  end
+
   def clean_url
     # return the url if its already been set, otherwise parse and assign it
     super || self.clean_url = parse_url(self.url)
@@ -44,5 +48,10 @@ class Website < ActiveRecord::Base
     else
       [answer.address.to_s]
     end
+  end
+
+  def fetch_whois
+    return "" if self.ip_addresses.empty?
+
   end
 end
