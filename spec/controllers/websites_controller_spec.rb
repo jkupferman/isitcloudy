@@ -129,15 +129,11 @@ describe WebsitesController, " SHOW action" do
       end
 
       it "should be a success" do
-        response.should be_success
+        response.should be_redirect
       end
 
       it "should display a flash message" do
         response.flash[:error].should_not be_nil
-      end
-
-      it "should render the new template" do
-        response.should render_template("new")
       end
     end
   end
