@@ -1,0 +1,7 @@
+<% if @website.on_cloud? %>
+  Yes. It is.
+<% else %>
+  No. It is not.
+<% end %>
+
+<%= link_to "Try Again?", new_website_path %>
