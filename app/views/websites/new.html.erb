@@ -1,6 +1,16 @@
+<%# page_title "Is [website] cloudy?" %>
+
 <% form_for @website do |f| %>
-  <%= flash_messages %>
-  <%#= f.error_messages %>
-  <%= f.text_field :url, :size => 20 %>
-  <%= submit_tag "Submit" %>
+  <div>
+    <%= flash_messages %>
+  </div>
+  <div>
+    <%#= f.error_messages %>
+  </div>
+  <div>
+    <%= f.text_field :url, :size => 20 %>
+  </div>
+  <div>
+    <%= submit_tag "Submit" %>
+  </div>
 <% end %>

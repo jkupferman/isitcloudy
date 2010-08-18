@@ -32,7 +32,6 @@ Feature: Cloud Check
     Then I should be on the create website page
     And I should see "Hey, how about giving me an actual website"
 
-
   Scenario: Vist Invalid Show Page
     Given I am on the home page
     When I go to an invalid website show page
