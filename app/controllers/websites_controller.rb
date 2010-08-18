@@ -7,7 +7,7 @@ class WebsitesController < ApplicationController
     @website = Website.new(params[:website])
 
     if @website.save
-      redirect_to websites_url(@website)
+      redirect_to website_url(@website)
     else
       flash[:notice] = "Hey, how about giving me an actual website."
       render :new
