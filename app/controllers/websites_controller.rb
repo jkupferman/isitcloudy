@@ -18,8 +18,8 @@ class WebsitesController < ApplicationController
     @website = Website.find_by_id(params[:id])
 
     if @website.nil?
-      flash.now[:error] = "Totally not cool. Try a real one next time."
-      render :new
+      flash[:error] = "Totally not cool. Try a real one next time."
+      redirect_to new_website_path
     end
   end
 end

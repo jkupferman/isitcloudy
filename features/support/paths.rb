@@ -20,8 +20,11 @@ module NavigationHelpers
     when /show website page/
       website_path
 
-    when /^(.*)'s website page$/i                                                                                       
+    when /(.*)'s website page/
       website_path(Website.find_by_url($1))
+
+    when /an invalid website show page/
+      website_path(9999999) # Should be larger then any ID in the database
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
