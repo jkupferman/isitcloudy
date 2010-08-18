@@ -33,4 +33,5 @@ config.gem 'rspec-rails', :version => '1.3.2', :lib => false
 config.gem 'flexmock', :version => '>= 0.8.6'
 config.gem 'webrat', :version => '>=0.4.3', :lib => false
 config.gem 'cucumber', :version => '>=0.2.2', :lib => false
+config.gem 'cucumber-rails', :version => '>=0.3.2'
 
