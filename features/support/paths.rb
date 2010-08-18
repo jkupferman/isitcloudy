@@ -8,7 +8,7 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /the home\s?page/
+    when /home\s?page/
       '/'
 
     when /new website page/
@@ -16,6 +16,12 @@ module NavigationHelpers
 
     when /create website page/
       websites_path
+
+    when /show website page/
+      website_path
+
+    when /^(.*)'s website page$/i                                                                                       
+      website_path(Website.find_by_url($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
@@ -25,6 +31,14 @@ module NavigationHelpers
 
     else
       begin
+        # If the page name starts in a path, strip it and try again
+        if page_name.starts_with?("the ")
+          begin
+            return path_to(page_name[4..page_name.length])
+          rescue
+          end
+        end
+
         page_name =~ /the (.*) page/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)

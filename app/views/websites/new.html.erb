@@ -1,6 +1,6 @@
 <% form_for @website do |f| %>
   <%= flash_messages %>
-  <%= f.error_messages %>
+  <%#= f.error_messages %>
   <%= f.text_field :url, :size => 20 %>
   <%= submit_tag "Submit" %>
 <% end %>

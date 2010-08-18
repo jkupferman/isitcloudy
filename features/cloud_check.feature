@@ -12,20 +12,22 @@ Feature: Cloud Check
     Given I am on the home page
     And I fill in "website_url" with "google.com"
     When I press "Submit"
-    Then I should see "No. It is not"
+    Then I should be on google.com's website page
+    And I should see "No. It is not"
+    And I should be on the show website page
     And I should see a link to "new website page" with text "Try Again?"
 
   Scenario: Submit Cloud Website
     Given I am on the home page
     And I fill in "website_url" with "rightscale.com"
     When I press "Submit"
-    Then I should see "Yes. It is."
+    Then I should be on rightscale.com's website page
+    And I should see "Yes. It is."
     And I should see a link to "new website page" with text "Try Again?"
-
 
   Scenario: Submit Blank URL
     Given I am on the home page
     And I fill in "website_url" with ""
     When I press "Submit"
-    Then I should be on create website page
+    Then I should be on the create website page
     And I should see "Hey, how about giving me an actual website"
