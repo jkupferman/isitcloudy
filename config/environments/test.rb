@@ -31,4 +31,6 @@ config.action_mailer.delivery_method = :test
 config.gem 'rspec', :version => '1.3.0', :lib => false
 config.gem 'rspec-rails', :version => '1.3.2', :lib => false
 config.gem 'flexmock', :version => '>= 0.8.6'
-config.gem "factory_girl", :source => "http://gemcutter.org", :version => '>= 1.2.4'
+config.gem 'webrat', :version => '>=0.4.3', :lib => false
+config.gem 'cucumber', :version => '>=0.2.2', :lib => false
+
