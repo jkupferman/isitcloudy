@@ -6,7 +6,7 @@ class Website < ActiveRecord::Base
 
   HTTP_PREFIX_REGEX = /https?:\/\//
   WWW_PREFIX_REGEX = /^www\./
-  URL_EXTRACT_REGEX = /([\w.]+)/ #/((\w+)([.]\w{3}|[.]\w{2}[.]\w{2}))/
+  URL_EXTRACT_REGEX = /([\w.]+)/
 
   validates_presence_of :url
 
