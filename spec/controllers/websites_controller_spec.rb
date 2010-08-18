@@ -77,7 +77,7 @@ describe WebsitesController, " CREATE action" do
       end
 
       it "should display a flash message" do
-        flash[:notice].should_not be_nil
+        response.flash[:notice].should_not be_nil
       end
 
       it "should render the new template" do
@@ -133,7 +133,7 @@ describe WebsitesController, " SHOW action" do
       end
 
       it "should display a flash message" do
-        flash[:error].should_not be_nil
+        response.flash[:error].should_not be_nil
       end
 
       it "should render the new template" do
