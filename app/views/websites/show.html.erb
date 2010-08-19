@@ -1,7 +1,11 @@
-<% if @website.on_cloud? %>
-  Yes. It is.
-<% else %>
-  No. It is not.
-<% end %>
+<div id="answer">
+  <% if @website.on_cloud? %>
+    <h3 class="positive">Yes. It is.</h3>
+  <% else %>
+    <h3 class="negative">No. It is not.</h3>
+  <% end %>
+</div>
 
-<%= link_to "Try Again?", new_website_path %>
+<div id="tryagain">
+  <%= link_to "Try Again?", new_website_path %>
+</div>
