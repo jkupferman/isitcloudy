@@ -35,7 +35,7 @@ class Website < ActiveRecord::Base
     url.gsub!(WWW_PREFIX_REGEX, "")
 
     result = url.match(URL_EXTRACT_REGEX)
-    if result.captures.any? && result.captures.length > 1
+    if result.captures.any? && result.captures.length >= 1
       url = result.captures.first
     end
 

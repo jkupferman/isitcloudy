@@ -33,36 +33,44 @@ describe Website do
         @actual_url = "rightscale.com"
       end
 
-      context "before actual url" do
+      context "with extra url cruft" do
         def check_url url
           @rightscale = Website.new(:url => url)
           @rightscale.ip_addresses.should =~ @actual_ips
         end
 
-        it "should get ips when www is added to the url" do
-          check_url("www." + @actual_url)
+        context "before actual url" do
+          it "should get ips when www is added to the url" do
+            check_url("www." + @actual_url)
+          end
+
+          it "should get ips when http://www is added to the url" do
+            check_url("http://www." + @actual_url)
+          end
+
+          it "should get ips when https://www is added to the url" do
+            check_url("https://www." + @actual_url)
+          end
+
+          it "should get ips when https://www is added to the url" do
+            check_url("https://www." + @actual_url)
+          end
+
+          it "should get ips when http:// is added to the url" do
+            check_url("http://" + @actual_url)
+          end
         end
 
-        it "should get ips when http://www is added to the url" do
-          check_url("http://www." + @actual_url)
-        end
-
-        it "should get ips when https://www is added to the url" do
-          check_url("https://www." + @actual_url)
-        end
-
-        it "should get ips when https://www is added to the url" do
-          check_url("https://www." + @actual_url)
-        end
-
-        it "should get ips when http:// is added to the url" do
-          check_url("http://" + @actual_url)
-        end
+        context "after actual url" do
+          it "should get ips when a trailing / is added to the url" do
+            check_url(@actual_url + "/")
+          end
+          it "should get ips when a trailing params are added to the url" do
+            check_url(@actual_url + "?foo=bar&steve=cookiemonster")
+          end
+        end      
       end
 
-      it "should get ips when a trailing / is added to the url"
-      it "should get ips when a trailing params are added to the url"
-      
       context "with non-.com suffixes" do
         it "should get ips with urls that have .edu suffixes" do
           @actual_ips = ["128.111.24.40"]
