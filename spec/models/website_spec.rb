@@ -79,9 +79,9 @@ describe Website do
         end
 
         it "should get ips with urls that have .co.uk suffixes" do
-          @actual_ips = ["208.46.17.17","208.46.17.10"]
-          @bbc = Website.new(:url => "telegraph.co.uk")
-          @bbc.ip_addresses.should =~ @actual_ips
+          @actual_ips = ["81.29.92.111"]
+          @recycle = Website.new(:url => "recycle.co.uk")
+          @recycle.ip_addresses.should =~ @actual_ips
         end
 
         it "should get ips with urls that have .co.il suffixes" do
