@@ -18,7 +18,7 @@ Feature: Cloud Check
     Then I should be on google.com's website page
     And I should see "No. It is not"
     And I should be on the show website page
-    And I should see a link to "new website page" with text "Try Again?"
+    And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Cloud Website
     Given I am on the home page
@@ -26,13 +26,13 @@ Feature: Cloud Check
     When I press "Submit"
     Then I should be on rightscale.com's website page
     And I should see "Yes. It is."
-    And I should see a link to "new website page" with text "Try Again?"
+    And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Website Via Param
     When I visit "query?url=rightscale.com"
     Then I should be on rightscale.com's website page
     And I should see "Yes. It is."
-    And I should see a link to "new website page" with text "Try Again?"
+    And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Blank URL
     Given I am on the home page

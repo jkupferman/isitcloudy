@@ -37,11 +37,11 @@ body {
     color: #0099FF;
 }
 
-#answer, #tryagain {
+#answer, #another {
     text-align: center;
 }
 
-#tryagain {
+#another {
     padding-top: 30px;
 }
 
@@ -66,6 +66,26 @@ body {
 
 #submit {
     display: none;
+}
+
+#answer h3 { 
+    display: inline; 
+    padding: 5px;
+}
+#answer h3.main {
+    font-size: 7em;
+}
+
+#answer h3.rest {
+    font-size: 2em;
+}
+
+html.positive {
+    background-color: #A5FF8A;
+}
+
+html.negative {
+    background-color: #FFBBBB;
 }
 
 .fieldWithErrors { display: inline; }

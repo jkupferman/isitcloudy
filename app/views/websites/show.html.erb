@@ -1,11 +1,15 @@
 <div id="answer">
   <% if @website.on_cloud? %>
-    <h3 class="positive">Yes. It is.</h3>
+    <% html_class "positive" %>
+    <h3 class="main">Yes.</h3>
+    <h3 class="rest">It is.</h3>
   <% else %>
-    <h3 class="negative">No. It is not.</h3>
+    <% html_class "negative" %>
+    <h3 class="main">No.</h3>
+    <h3 class="rest">It is not.</h3>
   <% end %>
 </div>
 
-<div id="tryagain">
-  <%= link_to "Try Again?", new_website_path %>
+<div id="another">
+  <%= link_to "Try Another?", new_website_path %>
 </div>

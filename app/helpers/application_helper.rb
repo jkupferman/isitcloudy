@@ -5,6 +5,11 @@ module ApplicationHelper
     content_for(:page_title) { title }
   end
 
+  def html_class class_name
+    content_for(:html_class) { "class='#{class_name}'" }
+  end
+
+
   FLASH_TYPES = [:error, :notice, :warning]
   def flash_messages
     keys = FLASH_TYPES & flash.keys
