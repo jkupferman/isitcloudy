@@ -10,13 +10,12 @@ module ApplicationHelper
     keys = FLASH_TYPES & flash.keys
     return "" if keys.empty?
 
-    messages = keys.map do |type|
-      content_tag :div, :class => "flash #{type.to_s}" do
-        flash[type]
-      end
+    content_tag :div, :id => "messages" do
+      keys.map do |type|
+        content_tag :div, :class => "flash #{type.to_s}" do
+          flash[type]
+        end
+      end.join
     end
-
-    messages.join
   end
-
 end

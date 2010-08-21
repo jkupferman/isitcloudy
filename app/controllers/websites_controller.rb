@@ -4,7 +4,8 @@ class WebsitesController < ApplicationController
   end
 
   def create
-    @website = Website.new(params[:website])
+    # Handle the url param for requests that go to /q?url=foo.com
+    @website = Website.new(params[:website] || { :url => params[:url] })
 
     if @website.save
       redirect_to website_url(@website)

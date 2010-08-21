@@ -6,6 +6,7 @@ Feature: Cloud Check
   Scenario: Visit Home Page
     When I go to the home page
     Then I should see a form with a "text" field
+    And the "url" field should contain "google.com"
     And I should see "cloudy?"
     And I should see a link to "the about page" with text "About"
     And I should see a link to "mailto:contact@isitcloudy.com" with text "Contact"
@@ -27,8 +28,8 @@ Feature: Cloud Check
     And I should see "Yes. It is."
     And I should see a link to "new website page" with text "Try Again?"
 
-  Scenario: Submit Cloud Website
-    When I go to the home page with the query parameters "?q=rightscale.com"
+  Scenario: Submit Website Via Param
+    When I visit "query?url=rightscale.com"
     Then I should be on rightscale.com's website page
     And I should see "Yes. It is."
     And I should see a link to "new website page" with text "Try Again?"

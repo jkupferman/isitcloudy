@@ -67,3 +67,5 @@ body {
 #submit {
     display: none;
 }
+
+.fieldWithErrors { display: inline; }

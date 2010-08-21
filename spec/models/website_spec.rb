@@ -94,7 +94,7 @@ describe Website do
   end
 
   context "whois" do
-    it "should return a bank string when no website is provided" do
+    it "should return a blank string when no website is provided" do
       Website.new.whois.should eql("")
     end
 

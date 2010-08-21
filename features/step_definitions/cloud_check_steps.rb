@@ -1,3 +1,8 @@
+When /^I visit "([^\"]*)"$/ do |arg1|
+  visit arg1
+end
+
+
 Then /^I should see a link to "([^\"]*)" with text "([^\"]*)"$/ do |url, text|
   check_link url,text
 end

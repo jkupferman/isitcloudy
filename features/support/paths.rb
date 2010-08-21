@@ -23,6 +23,9 @@ module NavigationHelpers
     when /about page/
       about_path
 
+    when /query page/
+      query_path
+
     when /(.*)'s website page/
       website_path(Website.find_by_url($1))
 
