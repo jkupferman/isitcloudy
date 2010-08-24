@@ -2,7 +2,7 @@
   <% if @website.on_cloud? %>
     <% html_class "positive" %>
     <h3 class="main">Yes.</h3>
-    <h3 class="rest">It is.</h3>
+    <h3 class="rest">It is on <%= @website.cloud_name %>.</h3>
   <% else %>
     <% html_class "negative" %>
     <h3 class="main">No.</h3>

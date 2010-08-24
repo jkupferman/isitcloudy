@@ -25,14 +25,12 @@ Feature: Cloud Check
     And I fill in "website_url" with "rightscale.com"
     When I press "Submit"
     Then I should be on rightscale.com's website page
-    And I should see "Yes. It is."
+    And I should see "Yes. It is on Amazon EC2."
     And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Website Via Param
     When I visit "query?url=rightscale.com"
     Then I should be on rightscale.com's website page
-    And I should see "Yes. It is."
-    And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Blank URL
     Given I am on the home page

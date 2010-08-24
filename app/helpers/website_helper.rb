@@ -1,33 +1,46 @@
 module WebsiteHelper
-  SUPPORTED_CLOUDS = [:ec2, :rackspace, :gogrid, :joyent, :linode]
 
-  EC2_REGEX = /AMAZON-EC2-[\d]+/
-  RACKSPACE_REGEX = /RSCP-NET-[\d]+/
-  GOGRID_REGEX = /GOGRID-BLK[\d]+/
-  JOYENT_REGEX = /NETWO1924-ARIN/
-  LINODE_REGEX = /LINODE-US/
+  class Cloud
+    attr_accessor :name, :regex
+    def initialize name, regex
+      @name = name
+      @regex = regex
+    end
+  end
+
+   CLOUDS = {
+     :ec2       => Cloud.new("Amazon EC2", /AMAZON-EC2-[\d]+/),
+     :rackspace => Cloud.new("Rackspace",  /RSCP-NET-[\d]+/  ),
+     :gogrid    => Cloud.new("GoGrid",     /GOGRID-BLK[\d]+/ ),
+     :joyent    => Cloud.new("Joyent",     /NETWO1924-ARIN/  ),
+     :linode    => Cloud.new("Linode",     /LINODE-US/       )
+   }
 
   def on_cloud?
-    on_ec2? || on_rackspace? || on_gogrid? || on_joyent? || on_linode?
+    CLOUDS.each do |sym, cloud|
+      return true if self.send("on_#{sym.to_s}?")
+    end
+    false
   end
 
-  def on_ec2?
-    EC2_REGEX =~ self.pretty_whois
+  # Generate the on_? method for each cloud
+  CLOUDS.each do |sym, cloud|
+    define_method "on_#{sym}?".to_sym do |*args|
+      cloud.regex =~ self.pretty_whois
+    end
   end
 
-  def on_rackspace?
-    RACKSPACE_REGEX =~ self.pretty_whois
+  def on? cloud_name
+    if CLOUDS.keys.include?(cloud_name)
+      self.send("on_#{cloud_name.to_s}?")
+    end
   end
 
-  def on_gogrid?
-    GOGRID_REGEX =~ self.pretty_whois
-  end
+  def cloud_name
+    CLOUDS.each do |sym, cloud|
+      return cloud.name if self.on? sym
+    end
 
-  def on_joyent?
-    JOYENT_REGEX =~ self.pretty_whois
-  end
-
-  def on_linode?
-    LINODE_REGEX =~ self.pretty_whois
+    nil
   end
 end
