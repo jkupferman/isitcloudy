@@ -8,7 +8,7 @@ class Website < ActiveRecord::Base
   WWW_PREFIX_REGEX = /^www\./
   URL_EXTRACT_REGEX = /([\w.]+)/
 
-  validates_presence_of :url
+  validates_presence_of :url, :clean_url
 
   def ip_addresses
     @ip_addresses ||= fetch_ip_addresses
@@ -23,7 +23,8 @@ class Website < ActiveRecord::Base
   end
 
   def clean_url
-    @cleaned_url ||= Website.parse_url(self.url)
+    # Lazily parse the url, then cache it
+    self[:clean_url] ||= Website.parse_url(self.url)
   end
 
   private
@@ -35,7 +36,7 @@ class Website < ActiveRecord::Base
     url.gsub!(WWW_PREFIX_REGEX, "")
 
     result = url.match(URL_EXTRACT_REGEX)
-    if result.captures.any? && result.captures.length >= 1
+    if result && result.captures.any? && result.captures.length >= 1
       url = result.captures.first
     end
 

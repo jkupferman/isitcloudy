@@ -12,22 +12,22 @@ module WebsiteHelper
   end
 
   def on_ec2?
-    ! EC2_REGEX.match(self.pretty_whois).nil?
+    EC2_REGEX =~ self.pretty_whois
   end
 
   def on_rackspace?
-    ! RACKSPACE_REGEX.match(self.pretty_whois).nil?
+    RACKSPACE_REGEX =~ self.pretty_whois
   end
 
   def on_gogrid?
-    ! GOGRID_REGEX.match(self.pretty_whois).nil?
+    GOGRID_REGEX =~ self.pretty_whois
   end
 
   def on_joyent?
-    ! JOYENT_REGEX.match(self.pretty_whois).nil?
+    JOYENT_REGEX =~ self.pretty_whois
   end
 
   def on_linode?
-    ! LINODE_REGEX.match(self.pretty_whois).nil?
+    LINODE_REGEX =~ self.pretty_whois
   end
 end
