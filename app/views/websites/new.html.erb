@@ -1,19 +1,17 @@
 <%# page_title "Is [website] cloudy?" %>
 
-<div id="question">
 <% form_for @website do |f| %>
   <%= flash_messages %>
-  <div id="question">
-    <%= f.label "url", :url, :style => 'display: none;' %>
+    <p><%= f.label "url", :url, :style => 'display: none;' %></p>
 
-    <h2>Is</h2>
-    <%= f.text_field :url, :size => 20, :value => "google.com", :autocomplete => "off", :onclick => "this.value=''; this.onclick=''" %>
-    <h2>cloudy?</h2>
-
-  </div>
+    <div id="question">
+      <h2>Is</h2>
+      <%= f.text_field :url, :size => 20, :value => "google.com", :onclick => "this.value=''; this.autocomplete='off'; this.onclick=''" %>
+      <h2>cloudy?</h2>
+    </div>
 
   <div id="submit">
     <%= submit_tag "Submit" %>
   </div>
 <% end %>
-</div>
+

@@ -96,4 +96,16 @@ html.negative {
     text-align: center;
 }
 
+div.flash {
+    font-size: 1.3em;
+}
+
+div.info {
+    color: #F88017;
+}
+
+div.error, div.notice {
+    color: #E42217;
+}
+
 .fieldWithErrors { display: inline; }
