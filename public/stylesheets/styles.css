@@ -1,5 +1,5 @@
 html {
-    font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
+    font-family: "Helvetica Neue-Light", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
     background: #ffffff;
     font-size: 12px;
     line-height: 1.2em;
@@ -50,6 +50,10 @@ body {
     border-bottom: 1px solid #c3c3c3;
 }
 
+#question {
+    font-weight: 600;
+}
+
 #question h2 {
     font-size: 5em;
     display: inline-block;
@@ -57,7 +61,7 @@ body {
 }
 
 #question input {
-    font-size: 2.5em;
+    font-size: 2.7em;
     padding: 10px 0 0 0;
     width: 300px;
     height: 40px;
@@ -86,6 +90,10 @@ html.positive {
 
 html.negative {
     background-color: #FFBBBB;
+}
+
+#about h2 {
+    text-align: center;
 }
 
 .fieldWithErrors { display: inline; }
