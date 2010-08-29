@@ -1,10 +1,12 @@
+<% html_class "response" %>
+
 <div id="answer">
   <% if @website.on_cloud? %>
-    <% html_class "positive" %>
+    <% body_class "positive" %>
     <h3 class="main">Yes.</h3>
     <h3 class="rest">It is on <%= @website.cloud_name %>.</h3>
   <% else %>
-    <% html_class "negative" %>
+    <% body_class "negative" %>
     <h3 class="main">No.</h3>
     <h3 class="rest">It is not.</h3>
   <% end %>

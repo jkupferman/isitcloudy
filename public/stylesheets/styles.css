@@ -6,7 +6,22 @@ html {
     height: 100%;
 }
 
+html.response {
+    background: #45b1dd url(/images/bg-slice.png) repeat-x;
+}
+
+body.positive {
+    background: transparent url(/images/clouds.png) repeat;
+}
+
+body.negative {
+}
+
 body {
+    height: 100%;
+    margin: 0;
+}
+#page {
     height: 90%;
 }
 
@@ -25,6 +40,7 @@ body {
 }
 
 #main {
+    text-align: center;
 }
 
 #footer {
@@ -33,12 +49,10 @@ body {
 }
 
 #question {
-    text-align: center;
     color: #0099FF;
 }
 
 #answer, #another {
-    text-align: center;
 }
 
 #another {
@@ -84,20 +98,16 @@ body {
     font-size: 2em;
 }
 
-html.positive {
-    background-color: #A5FF8A;
-}
-
-html.negative {
-    background-color: #FFBBBB;
-}
-
 #about h2 {
-    text-align: center;
+    font-size: 2.7em;
 }
+
+#about p {
+    text-align: left;
+}
+
 
 div.flash {
-    font-size: 1.3em;
 }
 
 div.info {
@@ -106,6 +116,14 @@ div.info {
 
 div.error, div.notice {
     color: #E42217;
+}
+
+p, a {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+a { 
+    color: #000;
 }
 
 .fieldWithErrors { display: inline; }

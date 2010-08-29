@@ -9,6 +9,10 @@ module ApplicationHelper
     content_for(:html_class) { "class='#{class_name}'" }
   end
 
+  def body_class class_name
+    content_for(:body_class) { "class='#{class_name}'" }
+  end
+
 
   FLASH_TYPES = [:error, :notice, :warning]
   def flash_messages

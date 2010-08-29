@@ -7,13 +7,15 @@
     <%= stylesheet_link_tag 'styles' %>
     <%= javascript_include_tag :defaults %>
   </head>
-  <body>
-    <div id="container">
-      <div id="wrapper">
-	<%= render :partial => "shared/header" %>
-	<%= render :partial => "shared/main" %>
+  <body <%= yield :body_class %>>
+    <div id="page">
+      <div id="container">
+	<div id="wrapper">
+	  <%= render :partial => "shared/header" %>
+	  <%= render :partial => "shared/main" %>
+	</div>
+	<%= render :partial => "shared/footer" %>
       </div>
-      <%= render :partial => "shared/footer" %>
     </div>
   </body>
 </html>
