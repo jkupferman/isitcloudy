@@ -7,7 +7,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :websites, :only => ['new', 'create', 'show']
 
-  map.about 'about', :controller => 'help', :action => 'about'
+  map.about '/help/about', :controller => 'help', :action => 'about'
+  map.contact '/help/contact', :controller => 'help', :action => 'contact', :conditions => { :method => :get }
+  map.connect '/help/create', :controller => 'help', :action => 'create', :conditions => { :method => :post }
 
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

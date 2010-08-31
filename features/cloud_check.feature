@@ -9,7 +9,7 @@ Feature: Cloud Check
     And the "url" field should contain "google.com"
     And I should see "cloudy?"
     And I should see a link to "the about page" with text "About"
-    And I should see a link to "mailto:contact@isitcloudy.com" with text "Contact"
+    And I should see a link to "the contact page" with text "Contact"
 
   Scenario: Submit Non-Cloud Website
     Given I am on the home page

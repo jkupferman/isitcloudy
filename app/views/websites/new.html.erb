@@ -1,7 +1,6 @@
-<%# page_title "Is [website] cloudy?" %>
-
-<% form_for @website do |f| %>
-  <%= flash_messages %>
+<div id="ask">
+  <% form_for @website do |f| %>
+    <%= flash_messages %>
     <p><%= f.label "url", :url, :style => 'display: none;' %></p>
 
     <div id="question">
@@ -10,8 +9,8 @@
       <h2>cloudy?</h2>
     </div>
 
-  <div id="submit">
-    <%= submit_tag "Submit" %>
-  </div>
-<% end %>
-
+    <div id="submit">
+      <%= submit_tag "Submit" %>
+    </div>
+  <% end %>
+</div>

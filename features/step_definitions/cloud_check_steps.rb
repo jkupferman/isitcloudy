@@ -2,7 +2,6 @@ When /^I visit "([^\"]*)"$/ do |arg1|
   visit arg1
 end
 
-
 Then /^I should see a link to "([^\"]*)" with text "([^\"]*)"$/ do |url, text|
   check_link url,text
 end
@@ -17,6 +16,19 @@ Then /^I should see a form with a "([^\"]*)" field$/ do |type|
     element.should have_selector("input[type='#{type}']")
   end
 end
+
+Then /^I should see a form with a "([^\"]*)" element$/ do |type|
+  response_body.should have_selector("form") do |element|
+    element.should have_selector(type)
+  end
+end
+
+Then /^I should see a "([^\"]*)" button$/ do |name|
+  response_body.should have_selector("form") do |element|
+    element.should have_selector("input", :type => 'submit', :value => name) 
+  end
+end
+
 
 # Checks if the url is actually a specified path so that both
 # can use the same steps.

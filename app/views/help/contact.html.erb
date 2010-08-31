@@ -1,0 +1,23 @@
+<div id="contact">
+  <h2>Contact Us</h2>
+
+  <% form_for(:contact, :url => url_for(:controller => 'help', :action => 'create')) do |form| %>
+    <%= flash_messages %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+
+    <%= form.label :subject %>
+    <%= form.text_field :subject %>
+
+    <%= form.label "Message" %><br />
+    <%= form.text_area :body %>
+
+    <%= link_to "Home", root_path %>
+    <%= form.submit "Send", :class => "submit" %>
+    <div style="clear"></div>
+
+  <% end %>
+</div>

@@ -7,5 +7,5 @@ Feature: About Page
     When I go to the about page
     Then I should see "is it cloudy?"
     And I should see a link to "the about page" with text "About"
-    And I should see a link to "mailto:contact@isitcloudy.com" with text "Contact"
+    And I should see a link to "the contact page" with text "Contact"
 

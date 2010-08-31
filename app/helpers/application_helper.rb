@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
 
-  FLASH_TYPES = [:error, :notice, :warning]
+  FLASH_TYPES = [:error, :notice, :info]
   def flash_messages
     keys = FLASH_TYPES & flash.keys
     return "" if keys.empty?

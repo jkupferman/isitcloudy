@@ -23,6 +23,9 @@ module NavigationHelpers
     when /about page/
       about_path
 
+    when /contact page/
+      contact_path
+
     when /query page/
       query_path
 
