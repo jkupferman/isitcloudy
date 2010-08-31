@@ -28,6 +28,14 @@ Feature: Cloud Check
     And I should see "Yes. It is on Amazon EC2."
     And I should see a link to "new website page" with text "Try Another?"
 
+  Scenario: Submit Rackspace Website
+    Given I am on the home page
+    And I fill in "website_url" with "scobleizer.com"
+    When I press "Submit"
+    Then I should be on scobleizer.com's website page
+    And I should see "Yes. It is on Rackspace."
+    And I should see a link to "new website page" with text "Try Another?"
+
   Scenario: Submit Website Via Param
     When I visit "query?url=rightscale.com"
     Then I should be on rightscale.com's website page
