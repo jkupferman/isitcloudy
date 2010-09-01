@@ -96,10 +96,12 @@ body {
 }
 #answer h3.main {
     font-size: 7em;
+    line-height: 1.5em;
 }
 
 #answer h3.rest {
     font-size: 2em;
+    line-height: 1em;
 }
 
 #about h2, #contact h2 {
