@@ -147,7 +147,7 @@ div.error {
     border: 1px solid #C3C3C3;
 }
 
-#contact input:focus, #contact textarea:focus {
+#contact input:focus, #contact textarea:focus, #contact input.submit:hover {
     border: 1px solid #0099FF;
 }
 
@@ -158,6 +158,7 @@ div.error {
 #contact input.submit {
     float: right;
     width: 150px;
+    background-color: #EFEFEF;
 }
 
 
