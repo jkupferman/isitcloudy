@@ -9,6 +9,21 @@ describe Website do
     @website = Website.new
   end
 
+  context "clean_url" do
+    it "should correctly parse websites with dashes" do
+      Website.new(:url => "www.bd-fans.com").clean_url.should eql("bd-fans.com")
+    end
+    it "should correctly parse websites with underscores" do
+      Website.new(:url => "www.bd_fans.com").clean_url.should eql("bd_fans.com")
+    end
+    it "should correctly parse websites with numbers" do
+      Website.new(:url => "www.bd-fa3ns91.com").clean_url.should eql("bd-fa3ns91.com")
+    end
+    it "should correctly parse websites with subdomains" do
+      Website.new(:url => "http://food-prints.appspot.com/").clean_url.should eql("food-prints.appspot.com")
+    end
+  end
+
   context "ip_addresses" do
     it "should return an empty array when no url has been provided" do
       Website.new.ip_addresses.should =~ []
