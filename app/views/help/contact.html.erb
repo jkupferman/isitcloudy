@@ -4,21 +4,23 @@
   <h2>Contact Us</h2>
 
   <% form_for(:contact, :url => url_for(:controller => 'help', :action => 'create')) do |form| %>
-    <%= flash_messages %>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <div>
+      <%= flash_messages %>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
 
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+      <%= form.label :email %>
+      <%= form.text_field :email %>
 
-    <%= form.label :subject %>
-    <%= form.text_field :subject %>
+      <%= form.label :subject %>
+      <%= form.text_field :subject %>
 
-    <%= form.label "Message" %><br />
-    <%= form.text_area :body %>
+      <%= form.label :body, "Message" %><br />
+      <%= form.text_area :body %>
 
-    <%= link_to "Home", root_path %>
-    <%= form.submit "Send", :class => "submit" %>
+      <%= link_to "Home", root_path %>
+      <%= form.submit "Send", :class => "submit" %>
+    </div>
     <div style="clear"></div>
 
   <% end %>
