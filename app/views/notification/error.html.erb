@@ -8,7 +8,7 @@ Method: <%= @env['REQUEST_METHOD'] %>
 SSL: <%= @env['SERVER_PORT'].to_i == 443 ? "true" : "false" %>
 Agent: <%= @env['HTTP_USER_AGENT'] %>
 
-Backtrace
+Backtrace <%= @exception.class %>
 <%= @trace.to_a.join("</p>\n<p>") %>
 
 Params
@@ -23,5 +23,5 @@ Session
 
 Environment
 <% @env.each do |key, val| -%>
-  * <%= key %>: <%= val %>
+  * <%= key %>: <%= val.to_s %>
 <% end -%> 
