@@ -118,7 +118,43 @@ div.error, div.notice {
     color: #E42217;
 }
 
-p, a {
+#contact {
+    width: 480px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+#contact label {
+    width: 70px;
+    float: left;
+    font-size: 1.4em;
+    text-align: right;
+    margin-right: 12px;
+}
+
+#contact input, #contact textarea {
+    padding: 5px;
+    width: 385px;
+    margin: 0px 0px 10px 0px;
+    border: 1px solid #C3C3C3;
+}
+
+#contact input:focus, #contact textarea:focus, #contact input.submit:hover {
+    border: 1px solid #0099FF;
+}
+
+#contact textarea {
+    height: 400px;
+}
+
+#contact input.submit {
+    float: right;
+    width: 150px;
+    background-color: #EFEFEF;
+}
+
+
+p, a, label, textarea {
     font-size: 1.3em;
     line-height: 1.5em;
 }
