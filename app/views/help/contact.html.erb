@@ -3,21 +3,20 @@
 <div id="contact">
   <h2>Contact Us</h2>
 
-  <% form_for(:contact, :url => url_for(:controller => 'help', :action => 'create')) do |form| %>
+  <% form_for(:contact, :url => url_for(:controller => 'help', :action => 'create'), :html => {:id => "contactus"}) do |form| %>
     <div>
-      <%= flash_messages %>
       <%= form.label :name %>
-      <%= form.text_field :name %>
-
+      <%= form.text_field :name, :title => "Name" %>
+      <br />
       <%= form.label :email %>
-      <%= form.text_field :email %>
-
+      <%= form.text_field :email, :title => "Email" %>
+      <br />
       <%= form.label :subject %>
-      <%= form.text_field :subject %>
-
-      <%= form.label :body, "Message" %><br />
-      <%= form.text_area :body %>
-
+      <%= form.text_field :subject, :title => "Subject" %>
+      <br />
+      <%= form.label :body, "Message" %>
+      <%= form.text_area :body, :title => "Message" %>
+      <br /><br />
       <%= link_to "Home", root_path %>
       <%= form.submit "Send", :class => "submit" %>
     </div>
@@ -25,3 +24,17 @@
 
   <% end %>
 </div>
+
+
+<%= javascript_include_tag "http://code.jquery.com/jquery-1.4.2.min.js" %>
+<%= javascript_include_tag "jquery.validity.pack.js" %>
+<script type="text/javascript">
+    $(function() {
+        $("#contactus").validity(function() {
+          $("#contact_name").require();
+          $("#contact_email").require().match("email");
+          $("#contact_subject").require();
+          $("#contact_body").require();
+        });
+    });
+</script>
