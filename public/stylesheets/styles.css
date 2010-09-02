@@ -1,6 +1,6 @@
 html {
     font-family: "Helvetica Neue-Light", "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
-    background: #ffffff;
+    background: #FFF;
     font-size: 12px;
     line-height: 1.2em;
     height: 100%;
@@ -18,8 +18,6 @@ body.positive {
     background: transparent url(/images/clouds.png) repeat;
 }
 
-body.negative {}
-
 body {
     height: 100%;
     margin: 0;
@@ -31,12 +29,8 @@ body {
 
 #container {
     width: 800px;
-    margin: 0 auto;
     height: 100%;
-}
-
-#header {
-    padding-top: 100px;
+    margin: 0 auto;
 }
 
 #wrapper {
@@ -47,20 +41,14 @@ body {
     text-align: center;
 }
 
-#ask, #answer {
-    padding-top: 100px;
-}
-
 #footer {
     text-align: center;
     height: 10%;
 }
 
 #question {
-    color: #0099FF;
-}
-
-#answer, #another {
+    color: #09F;
+    font-weight: 600;
 }
 
 #another {
@@ -72,10 +60,6 @@ body {
     border-bottom: 1px solid #C3C3C3;
 }
 
-#question {
-    font-weight: 600;
-}
-
 #question h2 {
     font-size: 5em;
     display: inline-block;
@@ -84,20 +68,21 @@ body {
 
 #question input {
     font-size: 2.7em;
-    padding: 10px 0 0 0;
     width: 300px;
     height: 40px;
     text-align: center;
+    padding: 10px 0 0;
 }
 
 #submit {
     display: none;
 }
 
-#answer h3 { 
-    display: inline; 
+#answer h3 {
+    display: inline;
     padding: 5px;
 }
+
 #answer h3.main {
     font-size: 7em;
     line-height: 1.5em;
@@ -108,7 +93,7 @@ body {
     line-height: 1em;
 }
 
-#about h2, #contact h2 {
+#about h2,#contact h2 {
     font-size: 2.7em;
     padding-bottom: 20px;
 }
@@ -122,7 +107,7 @@ div.info {
 }
 
 div.notice {
-   color: #F88017;
+    color: #F88017;
 }
 
 div.error {
@@ -131,8 +116,8 @@ div.error {
 
 #contact {
     width: 480px;
-    margin: 0 auto;
     padding-bottom: 100px;
+    margin: 0 auto;
 }
 
 #contact label {
@@ -144,14 +129,14 @@ div.error {
 }
 
 #contact input, #contact textarea {
-    padding: 5px;
     width: 385px;
-    margin: 0px 0px 10px 0px;
     border: 1px solid #C3C3C3;
+    margin: 0 0 10px;
+    padding: 5px;
 }
 
 #contact input:focus, #contact textarea:focus, #contact input.submit:hover {
-    border: 1px solid #0099FF;
+    border: 1px solid #09F;
 }
 
 #contact textarea {
@@ -169,7 +154,7 @@ div.error {
 }
 
 #cloudwrapper {
-    float : left;
+    float: left;
     height: 300px;
 }
 
@@ -181,18 +166,28 @@ div.error {
     font-size: 1em;
 }
 
-a:hover {
-    color: #0099FF;
+#header, #ask, #answer {
+    padding-top: 100px;
 }
 
-p, a, label, textarea {
+a:hover {
+    color: #09F;
+}
+
+p,a,label,textarea {
     font-size: 1.3em;
     line-height: 1.5em;
 }
 
-a { 
-    color: #000000;
+
+a {
+    color: #000;
 }
 
-.fieldWithErrors { display: inline; }
-.clear { clear: both; }
+.fieldWithErrors {
+    display: inline;
+}
+
+.clear {
+    clear: both;
+}
