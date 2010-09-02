@@ -20,7 +20,7 @@ module ActionView
             asset_id
           else
             path = File.join(ASSETS_DIR, source)
-            asset_id = File.exist?(path) ? Digest::MD5.file(path).hexdigest.to_i(12) : ''
+            asset_id = File.exist?(path) ? Digest::MD5.file(path).hexdigest[0..6] : ''
             
             if @@cache_asset_timestamps
               @@asset_timestamps_cache_guard.synchronize do
