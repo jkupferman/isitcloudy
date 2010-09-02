@@ -29,7 +29,6 @@ Then /^I should see a "([^\"]*)" button$/ do |name|
   end
 end
 
-
 # Checks if the url is actually a specified path so that both
 # can use the same steps.
 def path_url url

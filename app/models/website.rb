@@ -27,6 +27,10 @@ class Website < ActiveRecord::Base
     self[:clean_url] ||= Website.parse_url(self.url)
   end
 
+  def link
+    "http://" + self.clean_url.to_s
+  end
+
   private
   def self.parse_url input_url
     return nil if input_url.nil?

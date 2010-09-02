@@ -1,14 +1,15 @@
+<% page_title "is #{@website.clean_url} cloudy?" %>
 <% html_class "response" %>
 
 <div id="answer">
   <% if @website.on_cloud? %>
     <% body_class "positive" %>
-    <h3 class="main">Yes.</h3>
-    <h3 class="rest">It is on <%= @website.cloud_name %>.</h3>
+    <h3 class="main">Yep.</h3><br />
+    <h3 class="rest"><%= link_to @website.clean_url, h(@website.link) %> is on <%= @website.cloud_name %>.</h3>
   <% else %>
     <% body_class "negative" %>
-    <h3 class="main">No.</h3>
-    <h3 class="rest">It is not.</h3>
+    <h3 class="main">Nope.</h3><br />
+    <h3 class="rest"><%= link_to @website.clean_url, h(@website.link) %> is not on the cloud.</h3>
   <% end %>
 </div>
 

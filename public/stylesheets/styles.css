@@ -10,17 +10,21 @@ html.response {
     background: #45b1dd url(/images/bg-slice.png) repeat-x;
 }
 
+html.response a:hover {
+    color: #707070;
+}
+
 body.positive {
     background: transparent url(/images/clouds.png) repeat;
 }
 
-body.negative {
-}
+body.negative {}
 
 body {
     height: 100%;
     margin: 0;
 }
+
 #page {
     height: 90%;
 }
@@ -96,18 +100,17 @@ body {
 }
 #answer h3.main {
     font-size: 7em;
+    line-height: 1.5em;
 }
 
 #answer h3.rest {
     font-size: 2em;
+    line-height: 1em;
 }
 
 #about h2, #contact h2 {
     font-size: 2.7em;
-}
-
-#about p {
-    text-align: left;
+    padding-bottom: 20px;
 }
 
 div.flash {
@@ -161,6 +164,26 @@ div.error {
     background-color: #EFEFEF;
 }
 
+#about img {
+    padding: 30px 30px 0 0;
+}
+
+#cloudwrapper {
+    float : left;
+    height: 300px;
+}
+
+#about p {
+    text-align: left;
+}
+
+#about a {
+    font-size: 1em;
+}
+
+a:hover {
+    color: #0099FF;
+}
 
 p, a, label, textarea {
     font-size: 1.3em;

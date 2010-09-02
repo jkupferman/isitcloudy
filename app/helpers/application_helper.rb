@@ -2,7 +2,7 @@
 module ApplicationHelper
 
   def page_title title
-    content_for(:page_title) { title }
+    content_for(:page_title) { h(title) }
   end
 
   def html_class class_name

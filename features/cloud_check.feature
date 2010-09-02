@@ -16,7 +16,9 @@ Feature: Cloud Check
     And I fill in "website_url" with "google.com"
     When I press "Submit"
     Then I should be on google.com's website page
-    And I should see "No. It is not"
+    And I should see "Nope."
+    And I should see a link to "http://google.com" with text "google.com"
+    And I should see "is not on the cloud."
     And I should be on the show website page
     And I should see a link to "new website page" with text "Try Another?"
 
@@ -25,7 +27,9 @@ Feature: Cloud Check
     And I fill in "website_url" with "rightscale.com"
     When I press "Submit"
     Then I should be on rightscale.com's website page
-    And I should see "Yes. It is on Amazon EC2."
+    And I should see "Yep."
+    And I should see a link to "http://rightscale.com" with text "rightscale.com"
+    And I should see "is on Amazon EC2."
     And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Rackspace Website
@@ -33,7 +37,9 @@ Feature: Cloud Check
     And I fill in "website_url" with "scobleizer.com"
     When I press "Submit"
     Then I should be on scobleizer.com's website page
-    And I should see "Yes. It is on Rackspace."
+    And I should see "Yep."
+    And I should see a link to "http://scobleizer.com" with text "scobleizer.com"
+    And I should see "is on Rackspace."
     And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Website Via Param
