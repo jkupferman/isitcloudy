@@ -41,9 +41,9 @@ describe WebsitesController, " CREATE action" do
         @url = "http://www.google.com"
 
         @website = flexmock("website")
-        flexmock(Website).should_receive(:new).with("url" => @url).and_return(@website)
+        flexmock(Website).should_receive(:new).with("url" => @url).once.and_return(@website)
 
-        flexmock(@website).should_receive("save").and_return(true)
+        flexmock(@website).should_receive("save").once.and_return(true)
 
         post :create, { :website => { :url => @url } }
       end
@@ -61,12 +61,10 @@ describe WebsitesController, " CREATE action" do
 
     context "with an invalid website" do
       before do
-        @url = "http://www.google.com"
-
         @website = flexmock("website")
         flexmock(Website).should_receive(:new).with({}).and_return(@website)
 
-        flexmock(@website).should_receive("save").and_return(false)
+        flexmock(@website).should_receive("save").once.and_return(false)
 
         post :create, { :website => {} }
       end
@@ -100,7 +98,7 @@ describe WebsitesController, " SHOW action" do
         @id = 131
         @website = flexmock("website")
 
-        flexmock(Website).should_receive(:find_by_id).with(@id.to_s).and_return(@website)
+        flexmock(Website).should_receive(:find_by_id).with(@id.to_s).once.and_return(@website)
 
         get :show, :id => @id
       end
@@ -123,7 +121,7 @@ describe WebsitesController, " SHOW action" do
       before do
         @id = 131
 
-        flexmock(Website).should_receive(:find_by_id).with(@id.to_s).and_return(nil)
+        flexmock(Website).should_receive(:find_by_id).with(@id.to_s).once.and_return(nil)
 
         get :show, :id => @id
       end
