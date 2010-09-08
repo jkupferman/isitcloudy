@@ -1,8 +1,7 @@
 class Notification < ActionMailer::Base
-  EMAIL_DOMAIN = "isitcloudy.com"
-  CONTACT_EMAIL = "contact@#{EMAIL_DOMAIN}"
-  ERROR_EMAIL = "error@#{EMAIL_DOMAIN}"
-  ERROR_NOTIFIER_EMAIL = "error-notifier@#{EMAIL_DOMAIN}"
+  CONTACT_EMAIL        = "isitcloudywebsite+contact@gmail.com"
+  ERROR_EMAIL          = "isitcloudywebsite+error@gmail.com"
+  ERROR_NOTIFIER_EMAIL = "isitcloudywebsite+notifier@gmail.com"
 
   def contact email
     subject "[Contact Us] " << email[:subject]
