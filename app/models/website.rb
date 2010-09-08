@@ -8,6 +8,9 @@ class Website < ActiveRecord::Base
   WWW_PREFIX_REGEX = /^www\./
   URL_EXTRACT_REGEX = /([\w\d\-_.]+)/
 
+  WHOIS_ERROR_REGEX = /ERROR [\d]+:/
+  WHOIS_RETRY_ATTEMPTS = 3
+
   validates_presence_of :url, :clean_url, :ip_addresses
 
   def ip_addresses
@@ -66,15 +69,28 @@ class Website < ActiveRecord::Base
     end
   end
 
+
   def fetch_whois
     return "" if self.ip_addresses.empty?
 
-    client = Whois::Client.new
+    attempt = 0
     begin
-      client.query(self.ip_addresses.first).to_s
+      client = Whois::Client.new(:timeout => 5)
+      result = client.query(self.ip_addresses.first).to_s
+      raise ServerException.new(result) if WHOIS_ERROR_REGEX =~ result
+      result
+    rescue ServerException => e
+      Rails.logger.info("ServerException caught for URL #{self.url.to_s}: #{e.message.to_s}")
+      attempt += 1
+      retry unless attempt > WHOIS_RETRY_ATTEMPTS
+
+      Rails.logger.error("Whois lookup failed for URL #{self.url.to_s} after #{WHOIS_RETRY_ATTEMPTS} attempts")
+      ""
     rescue SocketError, Timeout::Error => e
       Rails.logger.info("Whois lookup failed for URL: #{self.url.to_s} \n#{e.pretty_printer}")
       ""
     end
   end
+
+  class ServerException < Exception; end
 end

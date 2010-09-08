@@ -6,7 +6,7 @@ Feature: Cloud Check
   Scenario: Visit Home Page
     When I go to the home page
     Then I should see a form with a "text" field
-    And the "url" field should contain "google.com"
+    And the "url" field should contain "heroku.com"
     And I should see "cloudy?"
     And I should see a link to "the about page" with text "About"
     And I should see a link to "the contact page" with text "Contact"

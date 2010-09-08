@@ -133,6 +133,38 @@ describe Website do
 
       @website.whois.should eql(@whois_result)
     end
+
+    context "retries" do
+      before do
+        @website = Website.new(:url => "foo.com")
+
+        @error_result = "ERROR 503: Our server totally blew up"
+        @whois_result = "A WHOIS RESULT"
+        @ip = "AN IP"
+
+        @client_mock = flexmock("Whois::Client")
+      end
+
+      it "should retry when whois returns an error" do
+        flexmock(@website).should_receive(:ip_addresses).and_return([@ip])
+
+        flexmock(Whois::Client).should_receive(:new).and_return(@client_mock)
+        # Comma seperated return results will return each result in turn, one per call
+        flexmock(@client_mock).should_receive(:query).with(@ip).and_return(@error_result, @error_result, @whois_result)
+
+        @website.whois.should eql(@whois_result)
+      end
+
+      it "should return an empty whois after the whois query returned too many errors" do
+        flexmock(@website).should_receive(:ip_addresses).and_return([@ip])
+
+        flexmock(Whois::Client).should_receive(:new).and_return(@client_mock)
+        flexmock(@client_mock).should_receive(:query).with(@ip).and_return(@error_result, @error_result, @error_result)
+
+        @website.whois.should eql("")
+      end
+    end
+
   end
 end
 
