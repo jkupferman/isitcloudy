@@ -2,11 +2,12 @@
   <% form_for @website do |f| %>
     <%= flash_messages %>
     <p><%= f.label "url", :url, :style => 'display: none;' %></p>
-
     <div id="question">
-      <h2>Is</h2>
-      <%= f.text_field :url, :size => 20, :value => "google.com", :onclick => "this.value=''; this.autocomplete='off'; this.onclick=''" %>
-      <h2>cloudy?</h2>
+      <% js_submit = "document.forms.new_website.submit();" %>
+
+      <h2><%= link_to "Is", "#", :onclick => js_submit %></h2>
+      <%= f.text_field :url, :size => 20, :value => get_default_url, :onclick => "this.value=''; this.onclick=''" %>
+      <h2><%= link_to "cloudy?", "#", :onclick => js_submit %></h2>
     </div>
 
     <div id="submit">
@@ -14,3 +15,10 @@
     </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  function init(){
+    document.forms.new_website.setAttribute('autocomplete','off');
+  }
+  window.onload=init;
+</script>

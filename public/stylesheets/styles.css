@@ -61,9 +61,14 @@ body {
 }
 
 #question h2 {
-    font-size: 5em;
     display: inline-block;
     padding: 10px;
+}
+
+#question h2 a {
+    font-size: 3.7em;
+    color: #0099FF;
+    text-decoration: none;
 }
 
 #question input {

@@ -8,7 +8,7 @@ class Website < ActiveRecord::Base
   WWW_PREFIX_REGEX = /^www\./
   URL_EXTRACT_REGEX = /([\w\d\-_.]+)/
 
-  validates_presence_of :url, :clean_url
+  validates_presence_of :url, :clean_url, :ip_addresses
 
   def ip_addresses
     @ip_addresses ||= fetch_ip_addresses

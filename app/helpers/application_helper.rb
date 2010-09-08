@@ -13,6 +13,9 @@ module ApplicationHelper
     content_for(:body_class) { "class='#{class_name}'" }
   end
 
+  def get_default_url
+    "heroku.com"
+  end
 
   FLASH_TYPES = [:error, :notice, :info]
   def flash_messages
