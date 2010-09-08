@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+  # Temporarily require authentication before we release it publicly
+  before_filter :authenticate
+
   rescue_from Exception, :with => :rescue_all_exceptions if Rails.env.production?
 
   private
@@ -24,5 +27,18 @@ class ApplicationController < ActionController::Base
                                )
 
     render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
+  end
+
+  VALID_LOGINS = {
+    "admin" => "cl0ud404",
+    "test" => "IsCl0udy"
+  }
+
+  def authenticate
+    if Rails.env.production?
+      authenticate_or_request_with_http_basic do |username, password|
+        VALID_LOGINS.has_key?(username) && VALID_LOGINS[username] == password
+      end
+    end
   end
 end
