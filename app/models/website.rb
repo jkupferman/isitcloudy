@@ -10,6 +10,7 @@ class Website < ActiveRecord::Base
 
   WHOIS_ERROR_REGEX = /ERROR [\d]+:/
   WHOIS_RETRY_ATTEMPTS = 3
+  DNS_TIMEOUT = 3
 
   validates_presence_of :url, :clean_url, :ip_addresses
 
@@ -55,13 +56,17 @@ class Website < ActiveRecord::Base
 
     result = []
     begin
-      result = Resolv::DNS.open { |d| d.getresources(self.clean_url, Resolv::DNS::Resource::IN::A) }
-    rescue Exception => e
+      timeout(DNS_TIMEOUT) do
+        result = Resolv::DNS.open { |d| d.getresources(self.clean_url, Resolv::DNS::Resource::IN::A) }
+        result.map! { |i| i.address.to_s }.compact.sort.uniq!
+      end
+    rescue Timeout::Error, Resolv::ResolvError => e
       Rails.logger.info("IP Address lookup failed for URL: #{self.clean_url.to_s} \n#{e.pretty_printer}")
+    rescue Exception => e
+      Rails.logger.warn("IP Address lookup failed for URL: #{self.clean_url.to_s} \n#{e.pretty_printer}")
     end
 
-
-    result.map { |i| i.address.to_s if i.respond_to?(:address) }.compact.sort.uniq
+    result
   end
 
 
