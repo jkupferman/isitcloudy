@@ -1,5 +1,5 @@
-require 'dnsruby'
 require 'whois'
+require 'resolv'
 
 class Website < ActiveRecord::Base
   include WebsiteHelper
@@ -53,20 +53,15 @@ class Website < ActiveRecord::Base
   def fetch_ip_addresses
     return [] if self.clean_url.nil?
 
-    resolver = Dnsruby::Resolver.new(:packet_timeout => 1, :query_timeout => 1, :retry_times => 2)
+    result = []
     begin
-      result = resolver.query(self.clean_url, Dnsruby::Types.A)
-    rescue Dnsruby::ServFail, Dnsruby::NXDomain, Dnsruby::ResolvTimeout => e
-      Rails.logger.info("IP Address lookup failed for URL: #{self.url.to_s} \n#{e.pretty_printer}")
-      return []
+      result = Resolv::DNS.open { |d| d.getresources(self.clean_url, Resolv::DNS::Resource::IN::A) }
+    rescue Exception => e
+      Rails.logger.info("IP Address lookup failed for URL: #{self.clean_url.to_s} \n#{e.pretty_printer}")
     end
 
-    answer = result.answer
-    if answer.kind_of?(Dnsruby::Message::Section)
-      answer.map { |i| i.address.to_s if i.respond_to?(:address) }.compact.sort.uniq
-    else
-      [answer.address.to_s]
-    end
+
+    result.map { |i| i.address.to_s if i.respond_to?(:address) }.compact.sort.uniq
   end
 
 
