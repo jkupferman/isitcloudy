@@ -36,7 +36,7 @@ describe Website do
     end
 
     it "should fetch the ips of facebook" do
-      @actual_ips = ["69.63.181.12", "69.63.189.11", "69.63.189.16", "69.63.181.11"]
+      @actual_ips = ["69.63.181.12", "69.63.189.11", "69.63.189.16"]
 
       @facebook = Website.new(:url => "facebook.com")
       @facebook.ip_addresses.should =~ @actual_ips
