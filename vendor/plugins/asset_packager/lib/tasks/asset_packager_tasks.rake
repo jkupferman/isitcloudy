@@ -5,7 +5,7 @@ namespace :asset do
   namespace :packager do
 
     desc "Merge and compress assets"
-    task :build_all do
+    task :build_all => :environment do
       Synthesis::AssetPackage.build_all
     end
 
@@ -13,11 +13,16 @@ namespace :asset do
     task :delete_all do
       Synthesis::AssetPackage.delete_all
     end
-
+    
     desc "Generate asset_packages.yml from existing assets"
     task :create_yml do
       Synthesis::AssetPackage.create_yml
     end
-
+    
+    desc "Check Syntax of asset files in asset_packages.yml"
+    task :check do
+      Synthesis::AssetPackage.lint_all
+    end
+    
   end
 end
