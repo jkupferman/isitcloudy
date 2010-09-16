@@ -1,0 +1,26 @@
+- page_title "is #{@website.clean_url} cloudy?"
+- html_class "response"
+
+#answer
+  - if @website.on_cloud?
+    - body_class "positive"
+    %h3{ :class => "main" }
+      Yep.
+    %br
+    %h3{ :class => "rest" }
+      = link_to @website.clean_url, h(@website.link) 
+      is on #{@website.cloud_name}.
+  - else
+    - body_class "negative"
+    %h3{ :class => "main"}
+      Nope.
+    %br
+    %h3{ :class => "rest" }
+      = link_to @website.clean_url, h(@website.link) 
+      is not on the cloud.
+
+
+
+#another
+  = link_to "Try Another?", new_website_path
+

@@ -1,0 +1,17 @@
+!!! Strict
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en", :class => yield(:html_class) }
+  %head
+    %meta{ "http-equiv" => "Content-Type", :content => "text/html", :charset => "UTF-8" }
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
+    %link{ :rel => "icon", :href => "/favicon.ico", :type => "image/x-icon" }
+    %title= yield(:page_title) || "Is it cloudy?"
+    = stylesheet_link_tag 'styles'
+
+  %body{ :class => yield(:body_class) }
+    #page
+      #container
+        #wrapper
+          = render :partial => "shared/header"
+          = render :partial => "shared/main"
+        = render :partial => "shared/footer"  
+

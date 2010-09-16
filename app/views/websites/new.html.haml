@@ -1,0 +1,24 @@
+#ask
+  - form_for @website do |f|
+    = flash_messages
+    %p
+      = f.label "url", :url, :style => 'display: none;'
+      #question
+        - js_submit = "document.forms.new_website.submit();"
+
+        %h2
+          = link_to "Is", "#", :onclick => js_submit
+        = f.text_field :url, :size => 20, :value => get_default_url, :onclick => "this.value=''; this.onclick=''"
+        %h2
+          = link_to "cloudy?", "#", :onclick => js_submit
+
+    #submit
+      = submit_tag "Submit"
+
+
+:javascript
+  function init(){
+    document.forms.new_website.setAttribute('autocomplete','off');
+  }
+  window.onload=init;
+

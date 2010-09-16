@@ -6,11 +6,11 @@ module ApplicationHelper
   end
 
   def html_class class_name
-    content_for(:html_class) { "class='#{class_name}'" }
+    content_for(:html_class) { class_name.to_s }
   end
 
   def body_class class_name
-    content_for(:body_class) { "class='#{class_name}'" }
+    content_for(:body_class) { class_name.to_s }
   end
 
   def get_default_url

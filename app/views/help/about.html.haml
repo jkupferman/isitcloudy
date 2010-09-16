@@ -1,0 +1,21 @@
+= page_title "About Us"
+
+#about
+  %h2 
+    About
+  #cloudwrapper
+    = image_tag "cloud.png"
+
+  %p
+    Ever wonder if a website is running on the cloud? Is it cloudy was created to answer that exact question. You simply type in the url and we do the rest.
+  %br
+  %p
+    How does the magic happen? Its simple. Each website has a 
+    = link_to "WHOIS", "http://en.wikipedia.org/wiki/Whois" 
+    record. By looking up the whois for the website we can determine if a website runs on the cloud and which cloud it runs on. The clouds currently supported are: #{ Website::CLOUDS.map {|k,v| v.name }.sort.join(", ") }.
+    %br
+    %br
+    = link_to "Home", root_path
+
+  .clear
+
