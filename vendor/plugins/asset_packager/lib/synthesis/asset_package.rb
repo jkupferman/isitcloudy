@@ -188,7 +188,7 @@ module Synthesis
                   host = ''
                 end
 
-                absolute_path.sub("#{RAILS_ROOT}/public", host) + (File.exist?(absolute_path) ? '?' + File.mtime(absolute_path).to_i.to_s : '')
+                absolute_path.sub("#{RAILS_ROOT}/public", host) + (File.exist?(absolute_path) ? '?' + asset_tag(absolute_path) : '')
               end unless @@css_url_replacements.has_key?(absolute_path)
 
               unless absolute_path == @@css_url_replacements[absolute_path]
@@ -198,6 +198,13 @@ module Synthesis
         end
 
         return data
+      end
+
+      require 'digest/md5'
+
+      # Computes the asset tag for images that are included via CSS files
+      def asset_tag path
+        Digest::MD5.file(path).hexdigest[0..6]
       end
 
       def merged_file
