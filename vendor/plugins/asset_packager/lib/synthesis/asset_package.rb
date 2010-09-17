@@ -204,7 +204,7 @@ module Synthesis
 
       # Computes the asset tag for images that are included via CSS files
       def asset_tag path
-        Digest::MD5.file(path).hexdigest[0..6]
+        Digest::MD5.file(path).hexdigest[0..9]
       end
 
       def merged_file
