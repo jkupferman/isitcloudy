@@ -164,7 +164,17 @@ describe Website do
         @website.whois.should eql("")
       end
     end
+  end
 
+  context "hit!" do
+    it "should increment the hit counter by one each time it is called" do
+      @website = Website.new
+      @website.hits.should eql(0)
+      @website.hit!
+      @website.hits.should eql(1)
+      @website.hit!
+      @website.hits.should eql(2)
+    end
   end
 end
 

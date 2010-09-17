@@ -30,6 +30,10 @@ class Website < ActiveRecord::Base
     self[:clean_url] ||= Website.parse_url(self.url)
   end
 
+  def hit!
+    self.hits += 1
+  end
+
   def link
     "http://" + self.clean_url.to_s
   end

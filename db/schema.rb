@@ -14,10 +14,11 @@ ActiveRecord::Schema.define(:version => 20100812050030) do
   create_table "websites", :force => true do |t|
     t.string   "url"
     t.string   "clean_url"
+    t.integer  "hits",       :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "websites", ["url"], :name => "index_websites_on_url"
+  add_index "websites", ["clean_url"], :name => "index_websites_on_clean_url", :unique => true
 
 end

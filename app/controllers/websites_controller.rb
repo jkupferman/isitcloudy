@@ -8,6 +8,8 @@ class WebsitesController < ApplicationController
     inputs = params[:website] || { :url => params[:url] }
     @website = Website.find_or_initialize_by_clean_url(Website.parse_url(inputs[:url]), inputs)
 
+    @website.hit!
+
     if @website.save
       redirect_to website_url(@website)
     else

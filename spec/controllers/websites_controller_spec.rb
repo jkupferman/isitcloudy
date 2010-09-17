@@ -44,6 +44,7 @@ describe WebsitesController, " CREATE action" do
         flexmock(Website).should_receive(:find_or_initialize_by_clean_url).with(@url, {"url" => @url}).once.and_return(@website)
 
         flexmock(@website).should_receive("save").once.and_return(true)
+        flexmock(@website).should_receive("hit!")
 
         post :create, { :website => { :url => @url } }
       end
@@ -65,6 +66,7 @@ describe WebsitesController, " CREATE action" do
         flexmock(Website).should_receive(:find_or_initialize_by_clean_url).with("", {}).once.and_return(@website)
 
         flexmock(@website).should_receive("save").once.and_return(false)
+        flexmock(@website).should_receive("hit!")
 
         post :create, { :website => {} }
       end
