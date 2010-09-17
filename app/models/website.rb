@@ -4,8 +4,7 @@ require 'resolv'
 class Website < ActiveRecord::Base
   include WebsiteHelper
 
-  HTTP_PREFIX_REGEX = /https?:\/\//
-  WWW_PREFIX_REGEX = /^www\./
+  HTTP_PREFIX_REGEX = /(https?:\/\/)?(www\.)?/
   URL_EXTRACT_REGEX = /([\w\d\-_.]+)/
 
   WHOIS_ERROR_REGEX = /ERROR [\d]+:/
@@ -35,22 +34,20 @@ class Website < ActiveRecord::Base
     "http://" + self.clean_url.to_s
   end
 
-  private
   def self.parse_url input_url
-    return nil if input_url.nil?
+    return "" if input_url.nil?
 
-    url = input_url.to_s.downcase
-    url.gsub!(HTTP_PREFIX_REGEX, "")
-    url.gsub!(WWW_PREFIX_REGEX, "")
+    url = input_url.to_s.downcase.gsub(HTTP_PREFIX_REGEX, "")
 
-    result = url.match(URL_EXTRACT_REGEX)
-    if result && result.captures.any? && result.captures.length >= 1
-      url = result.captures.first
+    extracted = url.match(URL_EXTRACT_REGEX)
+    if extracted && extracted.captures.any?
+      url = extracted.captures.first
     end
 
     url
   end
 
+  private
   def fetch_ip_addresses
     return [] if self.clean_url.nil?
 

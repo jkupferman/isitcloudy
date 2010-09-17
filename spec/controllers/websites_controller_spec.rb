@@ -38,10 +38,10 @@ describe WebsitesController, " CREATE action" do
   context "on a POST" do
     context "with an valid website" do
       before do
-        @url = "http://www.google.com"
+        @url = "google.com"
 
         @website = flexmock("website")
-        flexmock(Website).should_receive(:new).with("url" => @url).once.and_return(@website)
+        flexmock(Website).should_receive(:find_or_initialize_by_clean_url).with(@url, {"url" => @url}).once.and_return(@website)
 
         flexmock(@website).should_receive("save").once.and_return(true)
 
@@ -62,7 +62,7 @@ describe WebsitesController, " CREATE action" do
     context "with an invalid website" do
       before do
         @website = flexmock("website")
-        flexmock(Website).should_receive(:new).with({}).and_return(@website)
+        flexmock(Website).should_receive(:find_or_initialize_by_clean_url).with("", {}).once.and_return(@website)
 
         flexmock(@website).should_receive("save").once.and_return(false)
 
