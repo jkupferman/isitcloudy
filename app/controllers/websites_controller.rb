@@ -1,4 +1,6 @@
 class WebsitesController < ApplicationController
+  before_filter :page_cacher, :only => [:new, :show]
+
   def new
     @website = Website.new
   end

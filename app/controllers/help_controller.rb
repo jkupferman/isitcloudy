@@ -1,4 +1,6 @@
 class HelpController < ApplicationController
+  before_filter :page_cacher, :only => [:about, :contact]
+
   def about
   end
 

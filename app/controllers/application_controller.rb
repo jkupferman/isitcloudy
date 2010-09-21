@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
   # Temporarily require authentication before we release it publicly
   before_filter :authenticate
 
+  helper_method :page_cacher
+
   rescue_from Exception, :with => :rescue_all_exceptions if Rails.env.production?
 
   private
@@ -27,6 +29,12 @@ class ApplicationController < ActionController::Base
                                )
 
     render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
+  end
+
+  def page_cacher duration=10.minutes
+    if ActionController::Base.perform_caching && request.method == :get
+      response.headers['Cache-Control'] = "public, max-age=#{duration.to_i.to_s}"
+    end
   end
 
   VALID_LOGINS = {
