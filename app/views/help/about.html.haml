@@ -12,7 +12,7 @@
   %p
     How does the magic happen? Its simple. Each website has a 
     = link_to "WHOIS", "http://en.wikipedia.org/wiki/Whois" 
-    record. By looking up the whois for the website we can determine if a website runs on the cloud and which cloud it runs on. The clouds currently supported are: #{ Website::CLOUDS.map {|k,v| v.name }.sort.join(", ") }.
+    record. By looking up the whois for a website we can determine if that website runs on the cloud and which cloud it runs on. The clouds that are currently supported: #{ Website::CLOUDS.map {|k,v| v.name }.sort.join(", ") }.
     %br
     %br
     = link_to "Home", root_path
