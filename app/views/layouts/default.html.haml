@@ -13,5 +13,5 @@
         #wrapper
           = render :partial => "shared/header"
           = render :partial => "shared/main"
-        = render :partial => "shared/footer"  
-
+        = render :partial => "shared/footer"
+    = render :partial => "shared/analytics" if Rails.env.production?
