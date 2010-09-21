@@ -8,13 +8,14 @@ module WebsiteHelper
     end
   end
 
-   CLOUDS = {
-     :ec2       => Cloud.new("Amazon EC2", /AMAZON-EC2-[\d]+/   ),
-     :rackspace => Cloud.new("Rackspace",  /RS(CP|PC)-NET-[\d]+/),
-     :gogrid    => Cloud.new("GoGrid",     /GOGRID-BLK[\d]+/    ),
-     :joyent    => Cloud.new("Joyent",     /NETWO1924-ARIN/     ),
-     :linode    => Cloud.new("Linode",     /LINODE-US/          )
-   }
+  CLOUDS = {
+    :ec2       => Cloud.new("Amazon EC2", /AMAZON-EC2-[\d]+/   ),
+    :rackspace => Cloud.new("Rackspace",  /RS(CP|PC)-NET-[\d]+/),
+    :gogrid    => Cloud.new("GoGrid",     /GOGRID-BLK[\d]+/    ),
+    :joyent    => Cloud.new("Joyent",     /NETWO1924-ARIN/     ),
+    :linode    => Cloud.new("Linode",     /LINODE-US/          ),
+    :slicehost => Cloud.new("Slicehost",  /SLICE-STL-S[\w]/    )
+  }
 
   def on_cloud?
     CLOUDS.each do |sym, cloud|

@@ -126,6 +126,10 @@ describe WebsiteHelper do
       """NetRange:       97.107.128.0 - 97.107.143.255 CIDR:           97.107.128.0/20 OriginAS:        NetName:        LINODE-US NetHandle:      NET-97-107-128-0-1 Parent:         NET-97-0-0-0-0 NetType:        Direct Allocation NameServer:     NS4.LINODE.COM NameServer:     NS1.LINODE.COM NameServer:     NS2.LINODE.COM NameServer:     NS5.LINODE.COM NameServer:     NS3.LINODE.COM Comment:        This block is used for static customer allocations. RegDate:        2008-12-12 Updated:        2010-07-27"""
     end
 
+    def slicehost_whois
+      """NetRange:       209.20.64.0 - 209.20.95.255 CIDR:           209.20.64.0/19 OriginAS:       AS12200 NetName:        SLICE-STL-SG NetHandle:      NET-209-20-64-0-1 Parent:         NET-209-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.SLICEHOST.NET NameServer:     NS1.SLICEHOST.NET Comment:        http://www.slicehost.com RegDate:        2008-03-12 Updated:        2008-07-03"""
+    end
+
     def not_cloud_whois
       """NetRange:       64.40.96.0 - 64.40.127.255 CIDR:           64.40.96.0/19 OriginAS:        NetName:        NETNATION NetHandle:      NET-64-40-96-0-1 Parent:         NET-64-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.NETNATION.COM NameServer:     NS1.NETNATION.COM RegDate:        2000-02-25 Updated:        2005-06-13"""
     end
