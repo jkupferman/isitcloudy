@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate
 
   helper_method :page_cacher
+  helper_method :private_page_cacher
 
   rescue_from Exception, :with => :rescue_all_exceptions if Rails.env.production?
 
@@ -31,10 +32,14 @@ class ApplicationController < ActionController::Base
     render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
   end
 
-  def page_cacher duration=10.minutes
-    if ActionController::Base.perform_caching && request.method == :get
-      response.headers['Cache-Control'] = "public, max-age=#{duration.to_i.to_s}"
+  def page_cacher visibility=:public, duration=1.hour
+    if ActionController::Base.perform_caching && request.method == :get || true
+      response.headers['Cache-Control'] = "#{visibility.to_s}, max-age=#{duration.to_i.to_s}"
     end
+  end
+
+  def private_page_cacher duration=10.minutes
+    page_cacher :private, duration
   end
 
   VALID_LOGINS = {

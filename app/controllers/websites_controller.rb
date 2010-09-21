@@ -1,5 +1,7 @@
 class WebsitesController < ApplicationController
-  before_filter :page_cacher, :only => [:new, :show]
+  before_filter :page_cacher, :only => [:show]
+  # Make the new action private to ensure valid authenticity tokens
+  before_filter :private_page_cacher, :only => [:new]
 
   def new
     @website = Website.new
