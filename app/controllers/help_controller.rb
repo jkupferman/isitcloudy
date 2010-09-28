@@ -11,7 +11,7 @@ class HelpController < ApplicationController
   def create
     if Notification.deliver_contact(params[:contact])
       flash[:info] = "Thank you for your feedback."
-      redirect_to root_path
+      redirect_to root_path(:msg => "info")
     else
       flash.now[:error] = "An error occurred while sending this email."
       render :contact

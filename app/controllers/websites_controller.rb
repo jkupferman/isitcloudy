@@ -27,7 +27,7 @@ class WebsitesController < ApplicationController
 
     if @website.nil?
       flash[:error] = "Totally not cool. Try a real one next time."
-      redirect_to new_website_path
+      redirect_to new_website_path(:msg => "error")
     end
   end
 end
