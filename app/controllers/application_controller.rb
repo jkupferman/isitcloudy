@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def page_cacher visibility=:public, duration=1.hour
-    if ActionController::Base.perform_caching && request.method == :get || true
+    if ActionController::Base.perform_caching && request.method == :get && flash.keys.empty?
       response.headers['Cache-Control'] = "#{visibility.to_s}, max-age=#{duration.to_i.to_s}"
     end
   end
