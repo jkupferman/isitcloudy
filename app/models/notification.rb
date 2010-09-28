@@ -1,6 +1,6 @@
 class Notification < ActionMailer::Base
-  CONTACT_EMAIL  = "isitcloudywebsite+contact@gmail.com"
-  ERROR_EMAIL    = "isitcloudywebsite+error@gmail.com"
+  CONTACT_EMAIL  = "isitcloudymailer+contact@gmail.com"
+  ERROR_EMAIL    = "isitcloudymailer+error@gmail.com"
   NOTIFIER_EMAIL = "isitcloudywebsite@gmail.com"
 
   def contact email
