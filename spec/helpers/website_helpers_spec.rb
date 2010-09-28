@@ -130,6 +130,10 @@ describe WebsiteHelper do
       """NetRange:       209.20.64.0 - 209.20.95.255 CIDR:           209.20.64.0/19 OriginAS:       AS12200 NetName:        SLICE-STL-SG NetHandle:      NET-209-20-64-0-1 Parent:         NET-209-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.SLICEHOST.NET NameServer:     NS1.SLICEHOST.NET Comment:        http://www.slicehost.com RegDate:        2008-03-12 Updated:        2008-07-03"""
     end
 
+    def azure_whois
+      """NetRange:       70.37.0.0 - 70.37.191.255 CIDR:           70.37.128.0/18, 70.37.0.0/17 OriginAS:       AS8075 NetName:        MICROSOFT-DYNAMIC-HOSTING NetHandle:      NET-70-37-0-0-1 Parent:         NET-70-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.MSFT.NET NameServer:     NS4.MSFT.NET NameServer:     NS1.MSFT.NET NameServer:     NS5.MSFT.NET NameServer:     NS3.MSFT.NET Comment:        Abuse complaints will only be responded to if sent to Comment:        abuse@microsoft.com and abuse@msn.com. RegDate:        2008-09-10 Updated:        2009-11-03 """
+    end
+
     def not_cloud_whois
       """NetRange:       64.40.96.0 - 64.40.127.255 CIDR:           64.40.96.0/19 OriginAS:        NetName:        NETNATION NetHandle:      NET-64-40-96-0-1 Parent:         NET-64-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.NETNATION.COM NameServer:     NS1.NETNATION.COM RegDate:        2000-02-25 Updated:        2005-06-13"""
     end

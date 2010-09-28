@@ -32,7 +32,7 @@ Feature: Cloud Check
     And I should see "is on Amazon EC2."
     And I should see a link to "new website page" with text "Try Another?"
 
-  Scenario: Submit Rackspace Website
+   Scenario: Submit Rackspace Website
     Given I am on the home page
     And I fill in "website_url" with "scobleizer.com"
     When I press "Submit"
@@ -40,6 +40,16 @@ Feature: Cloud Check
     And I should see "Yep."
     And I should see a link to "http://scobleizer.com" with text "scobleizer.com"
     And I should see "is on Rackspace."
+    And I should see a link to "new website page" with text "Try Another?"
+
+  Scenario: Submit Windows Azure Website
+    Given I am on the home page
+    And I fill in "website_url" with "portal.ex.azure.microsoft.com"
+    When I press "Submit"
+    Then I should be on portal.ex.azure.microsoft.com's website page
+    And I should see "Yep."
+    And I should see a link to "http://portal.ex.azure.microsoft.com" with text "portal.ex.azure.microsoft.com"
+    And I should see "is on Windows Azure."
     And I should see a link to "new website page" with text "Try Another?"
 
   Scenario: Submit Website Via Param
