@@ -103,6 +103,10 @@ body {
   padding-bottom: 20px;
 }
 
+#about h2 {
+    margin-right: 20px;
+}
+
 div.flash {
   font-size: 1.3em;
 }
