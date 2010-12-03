@@ -48,10 +48,11 @@ class ApplicationController < ActionController::Base
   }
 
   def authenticate
-    if Rails.env.production?
-      authenticate_or_request_with_http_basic do |username, password|
-        VALID_LOGINS.has_key?(username) && VALID_LOGINS[username] == password
-      end
-    end
+#     if Rails.env.production?
+#       authenticate_or_request_with_http_basic do |username, password|
+#         VALID_LOGINS.has_key?(username) && VALID_LOGINS[username] == password
+#       end
+#     end
+    true
   end
 end
