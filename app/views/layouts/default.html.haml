@@ -1,11 +1,11 @@
 !!! Strict
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en", :class => yield(:html_class) }
   %head
+    %title= yield(:page_title) || "Is it cloudy? - Learning which websites really use Cloud Computing"
     %meta{ "http-equiv" => "Content-Type", :content => "text/html", :charset => "UTF-8" }
     %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon" }
     %link{ :rel => "icon", :href => "/favicon.ico", :type => "image/x-icon" }
-    %title= yield(:page_title) || "Is it cloudy?"
-    %meta{ :name => "description", :content =>"Is It Cloudy is a really simple website which tells you if a given website is hosted a public cloud computing service." }
+    %meta{ :name => "description", :content =>"Is it cloudy is a really simple website that tells you if a given website is hosted a public cloud computing service." }
     %meta{ :name => "keywords", :content => "Cloud Computing, Cloud, Amazon, Amazon EC2, Microsoft, Microsoft Azure, Rackspace Cloud, Linode, Joyent, Slicehost" }
 
     = stylesheet_link_merged :base
