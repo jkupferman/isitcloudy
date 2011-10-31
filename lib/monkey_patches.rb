@@ -20,6 +20,7 @@ module ActionView
             asset_id
           else
             path = File.join(ASSETS_DIR, source)
+            # Replace the timestamps with the MD5 of the file so its stable across servers
             asset_id = File.exist?(path) ? Digest::MD5.file(path).hexdigest[0..9] : ''
             
             if @@cache_asset_timestamps
