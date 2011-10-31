@@ -29,83 +29,88 @@ describe Website do
       Website.new.ip_addresses.should =~ []
     end
 
-    it "should fetch the ips of rightscale" do
-      @actual_ips = ["174.129.230.90", "174.129.238.229"]
-      @rightscale = Website.new(:url => "rightscale.com")
-      @rightscale.ip_addresses.should =~ @actual_ips
-    end
+    # FIXME: While useful for initial testing these shouldn't be in unit tests because
+    #        a) they have external dependencies 
+    #        b) they are slow
+    #        These should probably be moved to integration tests
 
-    it "should fetch the ips of facebook" do
-      @actual_ips = ["69.63.181.12", "69.63.189.11", "69.63.189.16"]
+    # it "should fetch the ips of rightscale" do
+    #   @actual_ips = ["174.129.230.90", "174.129.238.229"]
+    #   @rightscale = Website.new(:url => "rightscale.com")
+    #   @rightscale.ip_addresses.should =~ @actual_ips
+    # end
 
-      @facebook = Website.new(:url => "facebook.com")
-      @facebook.ip_addresses.should =~ @actual_ips
-    end
+    # it "should fetch the ips of facebook" do
+    #   @actual_ips = ["69.63.181.12", "69.63.189.11", "69.63.189.16"]
 
-    context "with different url variations" do
-      before do
-        @actual_ips = ["174.129.230.90", "174.129.238.229"]
-        @actual_url = "rightscale.com"
-      end
+    #   @facebook = Website.new(:url => "facebook.com")
+    #   @facebook.ip_addresses.should =~ @actual_ips
+    # end
 
-      context "with extra url cruft" do
-        def check_url url
-          @rightscale = Website.new(:url => url)
-          @rightscale.ip_addresses.should =~ @actual_ips
-        end
+    # context "with different url variations" do
+    #   before do
+    #     @actual_ips = ["174.129.230.90", "174.129.238.229"]
+    #     @actual_url = "rightscale.com"
+    #   end
 
-        context "before actual url" do
-          it "should get ips when www is added to the url" do
-            check_url("www." + @actual_url)
-          end
+    #   context "with extra url cruft" do
+    #     def check_url url
+    #       @rightscale = Website.new(:url => url)
+    #       @rightscale.ip_addresses.should =~ @actual_ips
+    #     end
 
-          it "should get ips when http://www is added to the url" do
-            check_url("http://www." + @actual_url)
-          end
+    #     context "before actual url" do
+    #       it "should get ips when www is added to the url" do
+    #         check_url("www." + @actual_url)
+    #       end
 
-          it "should get ips when https://www is added to the url" do
-            check_url("https://www." + @actual_url)
-          end
+    #       it "should get ips when http://www is added to the url" do
+    #         check_url("http://www." + @actual_url)
+    #       end
 
-          it "should get ips when https://www is added to the url" do
-            check_url("https://www." + @actual_url)
-          end
+    #       it "should get ips when https://www is added to the url" do
+    #         check_url("https://www." + @actual_url)
+    #       end
 
-          it "should get ips when http:// is added to the url" do
-            check_url("http://" + @actual_url)
-          end
-        end
+    #       it "should get ips when https://www is added to the url" do
+    #         check_url("https://www." + @actual_url)
+    #       end
 
-        context "after actual url" do
-          it "should get ips when a trailing / is added to the url" do
-            check_url(@actual_url + "/")
-          end
-          it "should get ips when a trailing params are added to the url" do
-            check_url(@actual_url + "?foo=bar&steve=cookiemonster")
-          end
-        end      
-      end
+    #       it "should get ips when http:// is added to the url" do
+    #         check_url("http://" + @actual_url)
+    #       end
+    #     end
 
-      context "with non-.com suffixes" do
-        it "should get ips with urls that have .edu suffixes" do
-          @actual_ips = ["128.111.24.40"]
-          @ucsb = Website.new(:url => "ucsb.edu")
-          @ucsb.ip_addresses.should =~ @actual_ips
-        end
+    #     context "after actual url" do
+    #       it "should get ips when a trailing / is added to the url" do
+    #         check_url(@actual_url + "/")
+    #       end
+    #       it "should get ips when a trailing params are added to the url" do
+    #         check_url(@actual_url + "?foo=bar&steve=cookiemonster")
+    #       end
+    #     end      
+    #   end
 
-        it "should get ips with urls that have .co.uk suffixes" do
-          @actual_ips = ["81.29.92.111"]
-          @recycle = Website.new(:url => "recycle.co.uk")
-          @recycle.ip_addresses.should =~ @actual_ips
-        end
+    #   context "with non-.com suffixes" do
+    #     it "should get ips with urls that have .edu suffixes" do
+    #       @actual_ips = ["128.111.24.40"]
+    #       @ucsb = Website.new(:url => "ucsb.edu")
+    #       @ucsb.ip_addresses.should =~ @actual_ips
+    #     end
 
-        it "should get ips with urls that have .co.il suffixes" do
-          @actual_ips = ["80.179.238.226"]
-          @asat = Website.new(:url => "asat.co.il")
-          @asat.ip_addresses.should =~ @actual_ips
-        end
-      end
-    end
+    #     it "should get ips with urls that have .co.uk suffixes" do
+    #       @actual_ips = ["81.29.92.111"]
+    #       @recycle = Website.new(:url => "recycle.co.uk")
+    #       @recycle.ip_addresses.should =~ @actual_ips
+    #     end
+
+    #     it "should get ips with urls that have .co.il suffixes" do
+    #       @actual_ips = ["80.179.238.226"]
+    #       @asat = Website.new(:url => "asat.co.il")
+    #       @asat.ip_addresses.should =~ @actual_ips
+    #     end
+    #   end
+    # end
   end
 
   context "whois" do
