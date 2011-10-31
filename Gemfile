@@ -20,7 +20,8 @@ gem 'haml-rails'
 gem 'whois', ">= 1.3.0"
 
 group :development, :test do
-  gem 'rspec-rails', '~> 1.3'
+  gem 'rspec', '1.3.0'
+  gem 'rspec-rails', '1.3.2'
   gem 'autotest'
 end
 
