@@ -9,7 +9,7 @@
     %meta{ :name => "keywords", :content => "Cloud Computing, Cloud, Amazon, Amazon EC2, Microsoft, Microsoft Azure, Rackspace Cloud, Linode, Joyent, Slicehost" }
 
     = stylesheet_link_merged :base
-
+    = render :partial => "shared/analytics" if Rails.env.production?
   %body{ :class => yield(:body_class) }
     #page
       #container
@@ -17,4 +17,3 @@
           = render :partial => "shared/header"
           = render :partial => "shared/main"
         = render :partial => "shared/footer"
-    = render :partial => "shared/analytics" if Rails.env.production?
