@@ -15,7 +15,8 @@ module WebsiteHelper
     :joyent    => Cloud.new("Joyent",        /NETWO1924-ARIN/           ),
     :linode    => Cloud.new("Linode",        /LINODE-US/                ),
     :slicehost => Cloud.new("Slicehost",     /SLICE-STL-S[\w]/          ),
-    :azure     => Cloud.new("Windows Azure", /MICROSOFT-DYNAMIC-HOSTING/)
+    :azure     => Cloud.new("Windows Azure", /MICROSOFT-DYNAMIC-HOSTING/),
+    :softlayer => Cloud.new("SoftLayer",     /SOFTLAYER-[\d]+-[\d]+/)
   }
 
   def on_cloud?

@@ -134,6 +134,10 @@ describe WebsiteHelper do
       """NetRange:       70.37.0.0 - 70.37.191.255 CIDR:           70.37.128.0/18, 70.37.0.0/17 OriginAS:       AS8075 NetName:        MICROSOFT-DYNAMIC-HOSTING NetHandle:      NET-70-37-0-0-1 Parent:         NET-70-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.MSFT.NET NameServer:     NS4.MSFT.NET NameServer:     NS1.MSFT.NET NameServer:     NS5.MSFT.NET NameServer:     NS3.MSFT.NET Comment:        Abuse complaints will only be responded to if sent to Comment:        abuse@microsoft.com and abuse@msn.com. RegDate:        2008-09-10 Updated:        2009-11-03 """
     end
 
+    def softlayer_whois
+      """NetRange:       173.192.0.0 - 173.193.255.255 CIDR:           173.192.0.0/15 OriginAS:       AS36351 NetName:        SOFTLAYER-4-8 NetHandle:      NET-173-192-0-0-1 Parent:         NET-173-0-0-0-0 NetType:        Direct Allocation RegDate:        2009-07-21 Updated:        2009-08-27 Ref:            http://whois.arin.net/rest/net/NET-173-192-0-0-1  OrgName:        SoftLayer Technologies Inc. OrgId:          SOFTL Address:        1950 N Stemmons Freeway City:           Dallas StateProv:      TX PostalCode:     75207 Country:        US RegDate:        2005-10-26 Updated:        2009-07-02"""
+    end
+
     def not_cloud_whois
       """NetRange:       64.40.96.0 - 64.40.127.255 CIDR:           64.40.96.0/19 OriginAS:        NetName:        NETNATION NetHandle:      NET-64-40-96-0-1 Parent:         NET-64-0-0-0-0 NetType:        Direct Allocation NameServer:     NS2.NETNATION.COM NameServer:     NS1.NETNATION.COM RegDate:        2000-02-25 Updated:        2005-06-13"""
     end
