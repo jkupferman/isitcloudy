@@ -19,6 +19,9 @@
 :javascript
   function init(){
     document.forms.new_website.setAttribute('autocomplete','off');
+    var input = document.getElementById("website_url");
+    input.focus();
+    input.select();
   }
   window.onload=init;
 
