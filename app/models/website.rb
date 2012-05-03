@@ -87,7 +87,7 @@ class Website < ActiveRecord::Base
 
       Rails.logger.error("Whois lookup failed for URL #{self.url.to_s} after #{WHOIS_RETRY_ATTEMPTS} attempts")
       ""
-    rescue SocketError, Timeout::Error => e
+    rescue SocketError, Timeout::Error, Whois::NoInterfaceError => e
       Rails.logger.info("Whois lookup failed for URL: #{self.url.to_s} \n#{e.pretty_printer}")
       ""
     end
