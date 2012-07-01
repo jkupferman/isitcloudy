@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  # Temporarily require authentication before we release it publicly
-  before_filter :authenticate
-
   helper_method :page_cacher
   helper_method :private_page_cacher
 
@@ -40,19 +37,5 @@ class ApplicationController < ActionController::Base
 
   def private_page_cacher duration=10.minutes
     page_cacher :private, duration
-  end
-
-  VALID_LOGINS = {
-    "admin" => "cl0ud404",
-    "test" => "IsCl0udy"
-  }
-
-  def authenticate
-#     if Rails.env.production?
-#       authenticate_or_request_with_http_basic do |username, password|
-#         VALID_LOGINS.has_key?(username) && VALID_LOGINS[username] == password
-#       end
-#     end
-    true
   end
 end
