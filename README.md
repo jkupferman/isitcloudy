@@ -9,7 +9,9 @@ http://isitcloudy.com
 ### What are some cloudy websites?
 Check out these bad boys...
 http://isitcloudy.com/q?url=http://www.heroku.com
+
 http://isitcloudy.com/q?url=http://www.rightscale.com
+
 http://isitcloudy.com/q?url=http://www.scobelizer.com
 
 ### How do I run this awesomesauce?
