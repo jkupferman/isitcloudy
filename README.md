@@ -8,11 +8,9 @@ http://isitcloudy.com
 
 ### What are some cloudy websites?
 Check out these bad boys...
-http://isitcloudy.com/q?url=http://www.heroku.com
-
-http://isitcloudy.com/q?url=http://www.rightscale.com
-
-http://isitcloudy.com/q?url=http://www.scobelizer.com
+* http://isitcloudy.com/q?url=http://www.heroku.com
+* http://isitcloudy.com/q?url=http://www.rightscale.com
+* http://isitcloudy.com/q?url=http://www.scobelizer.com
 
 ### How do I run this awesomesauce?
 * Clone the git repo `git clone git://github.com/jkupferman/isitcloudy.git`
@@ -20,4 +18,4 @@ http://isitcloudy.com/q?url=http://www.scobelizer.com
 * Run bundler to install all the gems `bundle`
 * Create the database `rake db:migrate`
 * Run the rails server `script/server`
-* Open up your browser and go to http://localhost:3000
+* Open up your browser and go to `http://localhost:3000`
