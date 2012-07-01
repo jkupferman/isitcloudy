@@ -9,23 +9,19 @@
       = form.label :name
       = form.text_field :name, :title => "Name"
       %br
-      = form.label :email 
-      = form.text_field :email, :title => "Email" 
+      = form.label :email
+      = form.text_field :email, :title => "Email"
       %br
-      = form.label :subject 
-      = form.text_field :subject, :title => "Subject" 
+      = form.label :subject
+      = form.text_field :subject, :title => "Subject"
       %br
-      = form.label :body, "Message" 
-      = form.text_area :body, :title => "Message" 
+      = form.label :body, "Message"
+      = form.text_area :body, :title => "Message"
       %br
       %br
-      = link_to "Home", root_path 
-      = form.submit "Send", :class => "submit" 
+      = link_to "Home", root_path
+      = form.submit "Send", :class => "submit"
     .clear
-
-
-
-
 
 = javascript_include_tag "http://code.jquery.com/jquery-1.4.2.min.js"
 = javascript_include_tag "jquery.validity.pack.js"
@@ -39,4 +35,3 @@
           $("#contact_body").require();
         });
     });
-
