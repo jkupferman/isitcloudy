@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '2.3.8'
+gem 'rails', '2.3.15'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,15 +13,15 @@ gem 'heroku'
 # Use unicorn as the web server
 # gem 'unicorn'
 gem 'mongrel'
-
 gem 'haml'
 gem 'haml-rails'
 
 gem 'whois', ">= 1.3.0"
+gem 'rdoc'
 
 group :development, :test do
-  gem 'rspec', '1.3.0'
-  gem 'rspec-rails', '1.3.2'
+  gem 'rspec', '1.3.1'
+  gem 'rspec-rails', '1.3.4'
   gem 'autotest'
 end
 
@@ -32,10 +32,6 @@ end
 group :test do
   gem 'flexmock'
   gem 'factory_girl'
-  gem 'autotest'
-  gem 'webrat'
-  gem 'cucumber', '>=0.2.2'
-  gem 'cucumber-rails', '>=0.3.2'
   gem 'database_cleaner', '>=0.5.0'
 end
 
