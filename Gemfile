@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-source 'http://gems.github.com'
 
 gem 'rails', '2.3.15'
 
@@ -16,7 +15,7 @@ gem 'mongrel'
 gem 'haml'
 gem 'haml-rails'
 
-gem 'whois', ">= 1.3.0"
+gem 'whois', "1.3.0"
 gem 'rdoc'
 
 group :development, :test do
