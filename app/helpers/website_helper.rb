@@ -9,14 +9,14 @@ module WebsiteHelper
   end
 
   CLOUDS = {
-    :ec2       => Cloud.new("Amazon EC2",    /AMAZON-EC2-[\d]+/         ),
+    :ec2       => Cloud.new("Amazon EC2",    /AMAZON-[\d]+/             ),
     :rackspace => Cloud.new("Rackspace",     /RS(CP|PC)-NET-[\d]+/      ),
     :gogrid    => Cloud.new("GoGrid",        /GOGRID-BLK[\d]+/          ),
     :joyent    => Cloud.new("Joyent",        /NETWO1924-ARIN/           ),
     :linode    => Cloud.new("Linode",        /LINODE-US/                ),
     :slicehost => Cloud.new("Slicehost",     /SLICE-STL-S[\w]/          ),
     :azure     => Cloud.new("Windows Azure", /MICROSOFT-DYNAMIC-HOSTING/),
-    :softlayer => Cloud.new("SoftLayer",     /SOFTLAYER-[\d]+-[\d]+/)
+    :softlayer => Cloud.new("SoftLayer",     /SOFTLAYER-[\d]+-[\d]+/    )
   }
 
   def on_cloud?
