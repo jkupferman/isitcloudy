@@ -30,6 +30,7 @@ group :development do
 end
 
 group :test do
+  gem 'cucumber', '>= 0.2.2'
   gem 'flexmock'
   gem 'factory_girl'
   gem 'database_cleaner', '>=0.5.0'
