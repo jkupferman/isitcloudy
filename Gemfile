@@ -7,11 +7,9 @@ gem 'rails', '2.3.15'
 
 gem 'sqlite3-ruby', '1.3.1', :require => 'sqlite3'
 
-gem 'heroku'
-
 # Use unicorn as the web server
 # gem 'unicorn'
-gem 'mongrel'
+gem 'thin'
 gem 'haml'
 gem 'haml-rails'
 
@@ -22,10 +20,6 @@ group :development, :test do
   gem 'rspec', '1.3.1'
   gem 'rspec-rails', '1.3.4'
   gem 'autotest'
-end
-
-group :development do
-  gem 'ruby-debug'
 end
 
 group :test do

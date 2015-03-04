@@ -2,7 +2,7 @@ require 'whois'
 require 'resolv'
 
 class Website < ActiveRecord::Base
-  include WebsiteHelper
+  include WebsitesHelper
 
   HTTP_PREFIX_REGEX = /(https?:\/\/)?(www\.)?/
   URL_EXTRACT_REGEX = /([\w\d\-_.]+)/

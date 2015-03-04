@@ -1,5 +1,4 @@
-module WebsiteHelper
-
+module WebsitesHelper
   class Cloud
     attr_accessor :name, :regex
     def initialize name, regex
