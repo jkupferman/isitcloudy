@@ -9,6 +9,7 @@ gem 'haml-rails'
 
 gem 'whois', "1.3.0"
 gem 'rdoc'
+gem 'test-unit'
 
 group :development, :test do
   gem 'rspec', '1.3.1'
