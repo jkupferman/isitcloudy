@@ -2,13 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '2.3.18'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3-ruby', '1.3.1', :require => 'sqlite3'
-
-# Use unicorn as the web server
-# gem 'unicorn'
 gem 'thin'
 gem 'haml'
 gem 'haml-rails'
@@ -20,6 +13,7 @@ group :development, :test do
   gem 'rspec', '1.3.1'
   gem 'rspec-rails', '1.3.4'
   gem 'autotest'
+  gem 'sqlite3-ruby', '1.3.1', :require => 'sqlite3'
 end
 
 group :test do
@@ -28,6 +22,12 @@ group :test do
   gem 'factory_girl'
   gem 'database_cleaner', '>=0.5.0'
 end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 
 
 # Deploy with Capistrano
