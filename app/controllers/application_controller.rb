@@ -15,20 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :page_cacher
   helper_method :private_page_cacher
 
-  rescue_from Exception, :with => :rescue_all_exceptions if Rails.env.production?
-
   private
-  def rescue_all_exceptions(exception)
-    Notification.deliver_error(exception,
-                               clean_backtrace(exception),
-                               session,
-                               params,
-                               request.env
-                               )
-
-    render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
-  end
-
   def page_cacher visibility=:public, duration=1.hour
     if ActionController::Base.perform_caching && request.method == :get && flash.keys.empty?
       response.headers['Cache-Control'] = "#{visibility.to_s}, max-age=#{duration.to_i.to_s}"
